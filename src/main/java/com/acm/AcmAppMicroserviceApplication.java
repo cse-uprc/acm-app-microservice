@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.acm.activeprofile.ActiveProfile;
+
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -16,6 +18,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class AcmAppMicroserviceApplication {
 
 	public static void main(String[] args) {
+		ActiveProfile.setPropertyFile();
 		SpringApplication.run(AcmAppMicroserviceApplication.class, args);
 	}
 
