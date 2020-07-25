@@ -15,7 +15,7 @@ public class ACMController {
 	/**
 	 * End point to create a manager based on the given request
 	 * 
-	 * @since July 11, 2020
+	 * @since July 24, 2020
 	 */
 	@GetMapping()
 	public String getACMEndpoint() {
