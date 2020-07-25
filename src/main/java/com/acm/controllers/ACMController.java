@@ -19,6 +19,7 @@ public class ACMController {
 	 */
 	@GetMapping()
 	public String getACMEndpoint() {
+		String test = "Sam";
 		return "ACM Endpoint Working!";
 	}
 }
