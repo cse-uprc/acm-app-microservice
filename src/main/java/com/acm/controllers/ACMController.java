@@ -21,7 +21,6 @@ public class ACMController {
 	 */
 	@GetMapping()
 	public String getACMEndpoint() {
-		String testString = "MergeTest";
 		return "ACM Endpoint Working!";
 	}
 }
