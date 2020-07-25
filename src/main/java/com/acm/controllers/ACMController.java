@@ -15,6 +15,7 @@ public class ACMController {
 	/**
 	 * End point to create a manager based on the given request
 	 * 
+	 * @return String
 	 * @since July 24, 2020
 	 */
 	@GetMapping()
