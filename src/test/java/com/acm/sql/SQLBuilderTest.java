@@ -43,7 +43,6 @@ public class SQLBuilderTest {
 
 	@Test
 	public void testGetValidQueryString() throws IOException, InvalidParamValueException {
-
 		Map<String, Set<?>> params = new HashMap<>();
 		params.put("testId", Sets.newHashSet(1));
 		params.put("userId", Sets.newHashSet(2));

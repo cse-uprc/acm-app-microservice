@@ -1,6 +1,5 @@
 package com.acm.app.user.client;
 
-public class client
-{
+public class UserClient {
 
 }
