@@ -19,5 +19,17 @@
    ```diff
    - [name] - Description of information that was added goes here
    ```
-
+---
 ## Release - 07/26/2020
+   ### <ins>Added:</ins>
+   ```diff
+   + [sambutler1017] - DqlBuilder class to read querys from acmsql file.
+   + [sambutler1017] - JwtTokenUtil class to generate and manage jwt tokens.
+   + [kwinborne] - Spec file for User Client.
+   + [kwinborne] - Skeleton for User Controller packages
+   ```
+   
+   ### <ins>Changed:</ins>
+   ```diff
+   ! [sambutler1017] - CodeOwners to include @llengel and @kwinborne
+   ```
