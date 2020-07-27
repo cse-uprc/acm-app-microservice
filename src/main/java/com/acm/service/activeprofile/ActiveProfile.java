@@ -1,4 +1,10 @@
-package com.acm.activeprofile;
+package com.acm.service.activeprofile;
+
+import static com.acm.service.globals.variables.Environments.DEV_ENV;
+import static com.acm.service.globals.variables.Environments.LOCAL_ENV;
+import static com.acm.service.globals.variables.Environments.PROD_ENV;
+
+import org.springframework.stereotype.Component;
 
 /**
  * Used to set and get the property files and active profile for the application
@@ -7,17 +13,14 @@ package com.acm.activeprofile;
  * @author Sam Butler
  * @since July 22, 2020
  */
+@Component
 public class ActiveProfile {
-	public static final String PROD_ENV = "/app/src/main";
-	public static final String DEV_ENV = "/app/src/main";
-	public static final String LOCAL_ENV = "../acm-app-microservice/src/main";
-
 	/**
 	 * Method to set the current active profile the application is running in
 	 * 
 	 * Possible Values: Production, Development, Local
 	 */
-	public static void setPropertyFile() {
+	public void setPropertyFile() {
 		if (System.getenv("APP_ENVIRONMENT") != null) {
 			System.setProperty("spring.profiles.active", System.getenv("APP_ENVIRONMENT"));
 		} else {
@@ -30,7 +33,7 @@ public class ActiveProfile {
 	 * 
 	 * @return string of the path to the set property file
 	 */
-	public static String getPropertyFilePath() {
+	public String getPropertyFilePath() {
 		String profile = System.getProperty("spring.profiles.active");
 		if (profile.equals("production")) {
 			return PROD_ENV + "/resources/application-prod.properties";
@@ -46,12 +49,27 @@ public class ActiveProfile {
 	 * 
 	 * @return string of the environment currently running
 	 */
-	public static String getEnvironment() {
+	public String getEnvironment() {
 		if (System.getenv("APP_ENVIRONMENT") != null) {
 			return System.getenv("APP_ENVIRONMENT");
-		} else {
-			return "Local";
-		}
+		} else
+			return "local";
+
+	}
+
+	/**
+	 * Gets the environment url
+	 * 
+	 * @return string of the environment url
+	 */
+	public String getEnvironmentUrl() {
+		String profile = System.getProperty("spring.profiles.active");
+		if (profile != null && profile.equals("production"))
+			return PROD_ENV;
+		else if (profile != null && profile.equals("development"))
+			return DEV_ENV;
+		else
+			return LOCAL_ENV;
 
 	}
 }

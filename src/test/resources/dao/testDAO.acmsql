@@ -1,0 +1,15 @@
+@NAME(testQuery)
+	SELECT *
+	FROM
+		test
+	@AND(:testId:)
+		testId = :testId:
+	@AND(:userId:)
+		userId = :userId:
+		
+@NAME(testQueryInvalidParams)
+	SELECT *
+	FROM
+		test
+	WHERE
+		userId = :userId:
