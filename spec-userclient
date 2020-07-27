@@ -1,0 +1,100 @@
+# User Client Specification Sheet
+
+### Client Package
+- This package is used to expose the endpoints and datagetters in this method to other services.
+- Other services are not allowed to access the controller directly so they call the client methods in order to get the information they need from the specified service.
+- So, in Short, the client would be the call between the service that needs the data and the controller.
+- An example for getting a list of users would be:
+```
+@Component
+public class UserClient{
+
+   @Autowired
+   UserController userController;
+
+   public List<User> getUsers() {
+      return userController.getUsers();
+   }
+}
+```
+
+### DAO Package
+- The dao service is what communicates with the database and makes the call to query for the data desired
+- This is where the meat of the information is retrieved, and where all the `POST`, `GET`, `DELETE`, and `PUT` calls are made
+- Once the SQLClient is in place a sample DAO method would look something like this:
+```
+@Component
+public class ManagerDAO {
+   @Autowired
+   private SqlBuilder sqlBuilder;
+
+   public User createUser(User user) {
+      sqlBuilder.setQueryFile("userDAO");
+      sqlBuilder.setParams(params);
+
+      post(sqlBuilder.getSql("createUser"));
+      return user;
+   }
+}
+```
+
+### Mapper Package
+- This is a package that will be used in the daolayer of the controllers. 
+- What this does is format the data returned from the DAO in manner that we want.
+- That is why the SQLClient will take a parameter of type `RowMapper<T>` and will map it that type and return that object we want
+- An Example mapper for getting a list of users would look like this:
+```
+public class UserMapper implements RowMapper<User> {
+   public static UserMapper USER_MAPPER = new UserMapper();
+
+   public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+      User user = new Manager();
+      user.setId(rs.getInt("user_id"));
+      user.setFirstName(rs.getString("first_name"));
+      user.setLastName(rs.getString("last_name"));
+      return User;
+      }
+}
+```
+
+### Rest package
+- This is the package that contains the controller
+- Meaning this is where the endpoints are set up so that we are able to hit them from the API and get information back from them
+- All of the endpoints will have a preceding text of `api/acm/<APP_PACKAGE>`
+   - So for users the base endpoint would be `api/acm/user-app`
+- An example controller for the user service would look something like this:
+```
+@CrossOrigin
+@RestController
+@RequestMapping("api/acm/user-app")
+@Controller
+public class ManagerController {
+
+   @Autowired
+   private UserService userService;
+
+   @PostMapping(produces = APPLICATION_JSON_VALUE)
+   public User createUser(@Valid @RequestBody User user) {
+      return userService.createUser(user);
+   }
+}
+```
+- What this would do is when a post-call is called on `api/acm/user-app` and a User object is passed then it will create a user of that type
+
+### Service Package
+- This is the connection between the `Controller` and the `DAO`
+- This service pulls on the information and calls the correct DAO methods needed and pulls all the data to one place and returns it to the controller
+- So this is the setup class that cleans the data for the controller before it is returned.
+- An example for the user service would look like this:
+```
+@Component
+public class UserService{
+
+   @Autowired
+   private UserDAO userDao;
+
+   public User createUser(User user) {
+      return userDao.createUser(user);
+   }
+}
+```
