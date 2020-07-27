@@ -32,4 +32,5 @@
    ### <ins>Changed:</ins>
    ```diff
    ! [sambutler1017] - CodeOwners to include @llengel and @kwinborne
+   ! [kwinborne] - Merged UserProfile and UserCredentials into User
    ```
