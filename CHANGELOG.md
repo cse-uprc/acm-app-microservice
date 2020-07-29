@@ -39,3 +39,13 @@
    ```diff
    ! [kwinborne] - Updated Readme.md to include the skeleton for a guide for beginners
    ```
+## Release - 07/28/2020
+   ### <ins>Added:</ins>
+   ```diff
+   + [kwinborne] - Test for UserClient
+   + [sambutler1017] - Test for UserService
+   ```
+   ### <ins>Changed:</ins>
+   ```diff
+   ! [kwinborne] - Filled in UserService, UserClient, UserController with appropriate methods
+   ```

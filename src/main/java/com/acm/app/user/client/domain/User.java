@@ -1,5 +1,7 @@
 package com.acm.app.user.client.domain;
 import com.acm.service.globals.enums.WebRole;
+import org.springframework.stereotype.Component;
+@Component
 public class User
 {
 
