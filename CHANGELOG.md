@@ -32,5 +32,10 @@
    ### <ins>Changed:</ins>
    ```diff
    ! [sambutler1017] - CodeOwners to include @llengel and @kwinborne
-   ! [kwinborne] - Merged UserProfile and UserCredentials into User
+   ! [kwinborne] - Merged UserProfile and UserCredentials into Use
+   ```
+## Release - 07/27/2020
+   ### <ins>Changed:</ins>
+   ```diff
+   ! [kwinborne] - Updated Readme.md to include the skeleton for a guide for beginners
    ```
