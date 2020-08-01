@@ -3,6 +3,7 @@ package com.acm.app.user.service;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import com.acm.app.user.client.domain.request.UserGetRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,6 +21,9 @@ public class UserServiceTest {
 	@InjectMocks
 	private UserService userService;
 
+	@InjectMocks
+	private UserGetRequest request;
+
 	@Mock
 	private UserDAO userDao;
 
@@ -34,9 +38,9 @@ public class UserServiceTest {
 		userResponse.setFirstName("Test");
 		userResponse.setLastName("Last");
 
-		when(userDao.getUser(Mockito.anyInt())).thenReturn(userResponse);
+		when(userDao.getUser(Mockito.any(UserGetRequest.class))).thenReturn(userResponse);
 
-		User userTest = userService.getUser(1);
+		User userTest = userService.getUser(request);
 
 		assertEquals("Expect Users to be equal", userTest, userResponse);
 	}

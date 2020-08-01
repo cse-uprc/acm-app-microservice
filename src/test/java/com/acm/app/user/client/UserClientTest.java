@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 
+import com.acm.app.user.client.domain.request.UserGetRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,6 +21,9 @@ public class UserClientTest {
     @InjectMocks
     private UserClient userClient;
 
+    @InjectMocks
+    private UserGetRequest request;
+
     @Mock
     private UserController userController;
 
@@ -34,9 +38,9 @@ public class UserClientTest {
         user.setFirstName("Test");
         user.setLastName("User");
 
-        when(userController.getUser(Mockito.anyInt())).thenReturn(user);
+        when(userController.getUser(Mockito.any(UserGetRequest.class))).thenReturn(user);
 
-        User userTest = userClient.getUser(1);
+        User userTest = userClient.getUser(request);
 
         assertEquals("Users should be equal", userTest, user);
     }
