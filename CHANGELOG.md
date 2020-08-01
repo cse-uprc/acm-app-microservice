@@ -78,4 +78,10 @@
    + [kwinborne] - Added dummy classes for JWT model
    + [kwinborne] - Created Authentication Controller class
    ```
+   
+## Release - 08/01/2020 v1.0.17
+   ### <ins>Added:</ins>
+   ```diff
+   + [shancock] - Created JWT models
+   ```
 
