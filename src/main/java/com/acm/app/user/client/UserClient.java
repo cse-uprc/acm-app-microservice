@@ -1,11 +1,13 @@
 package com.acm.app.user.client;
 
-		import com.acm.app.user.client.domain.request.UserGetRequest;
-		import org.springframework.beans.factory.annotation.Autowired;
-		import org.springframework.stereotype.Component;
+import java.util.List;
 
-		import com.acm.app.user.client.domain.User;
-		import com.acm.app.user.rest.UserController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
+import com.acm.app.user.rest.UserController;
 
 /**
  * Handles outside requests for user data
@@ -16,15 +18,15 @@ package com.acm.app.user.client;
 @Component
 public class UserClient {
 
-
 	@Autowired
 	private UserController userController;
+
 	/**
 	 * Returns a user from userController
 	 *
 	 * @param request - UserGetRequest to pass to userController.
 	 */
-	public User getUser(UserGetRequest request) {
+	public List<User> getUser(UserGetRequest request) {
 		return userController.getUser(request);
 	}
 }

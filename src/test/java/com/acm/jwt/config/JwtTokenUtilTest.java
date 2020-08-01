@@ -9,12 +9,13 @@ import static org.mockito.Mockito.doReturn;
 
 import java.util.Date;
 
-import com.acm.app.user.client.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.acm.app.user.client.domain.User;
 
 @SpringBootTest
 public class JwtTokenUtilTest {
@@ -27,7 +28,7 @@ public class JwtTokenUtilTest {
 	@BeforeEach
 	public void setUpTests() {
 		MockitoAnnotations.initMocks(this);
-		user.setId(1);
+		user.setUserId(1);
 		user.setFirstName("Test");
 		user.setLastName("User");
 		user.setUsername("TestUser123");

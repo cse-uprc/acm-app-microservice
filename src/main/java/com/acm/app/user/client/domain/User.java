@@ -1,100 +1,82 @@
 package com.acm.app.user.client.domain;
+
 import com.acm.service.globals.enums.WebRole;
-import org.springframework.stereotype.Component;
-@Component
-public class User
-{
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String emailAddress;
-    private String bioDesc;
-    private String password;
-    private String username;
-    private WebRole userGroup;
+@JsonInclude(Include.NON_NULL)
+public class User {
 
+	private int userId;
+	private String email;
+	private String firstName;
+	private String lastName;
+	private String username;
+	private String password;
+	private int active;
+	private WebRole webRole;
 
-    public int getId()
-    {
-        return id;
-    }
+	public int getUserId() {
+		return userId;
+	}
 
-    public void setId(int id)
-    {
-        this.id = id;
-    }
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-    public String getFirstName()
-    {
-        return firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getLastName()
-    {
-        return lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public String getEmailAddress()
-    {
-        return emailAddress;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmailAddress(String emailAddress)
-    {
-        this.emailAddress = emailAddress;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getBioDesc()
-    {
-        return bioDesc;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setBioDesc(String bioDesc)
-    {
-        this.bioDesc = bioDesc;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public WebRole getWebRoles()
-    {
-        return userGroup;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setWebRoles(WebRole userType)
-    {
-        userGroup = userType;
-    }
-    public String getUsername()
-    {
-        return username;
-    }
+	public void setPassword(String passoword) {
+		this.password = passoword;
+	}
 
-    public void setUsername(String username)
-    {
-        this.username = username;
-    }
+	public int getActive() {
+		return active;
+	}
 
-    public String getPassword()
-    {
-        return password;
-    }
+	public void setActive(int active) {
+		this.active = active;
+	}
 
-    public void setPassword(String passoword)
-    {
-        this.password = passoword;
-    }
-    public boolean isNull()
-    {
-        return username == null && password == null && id == 0;
-    }
+	public WebRole getWebRole() {
+		return webRole;
+	}
+
+	public void setWebRole(WebRole webRole) {
+		this.webRole = webRole;
+	}
 }

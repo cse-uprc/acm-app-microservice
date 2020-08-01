@@ -1,6 +1,4 @@
 package com.acm.app.user.client.domain.request;
-import com.acm.app.user.client.domain.User;
-import com.acm.app.user.dao.UserDAO;
 
 /**
  * This class handles lookups passed to the DAO.
@@ -8,28 +6,24 @@ import com.acm.app.user.dao.UserDAO;
  * @author Kiyle Winborne
  * @since 7/30/2020
  */
-public class UserGetRequest
-{
-    private int id;
-    private String username;
+public class UserGetRequest {
 
-    public String getUsername()
-    {
-        return username;
-    }
+	private int id;
+	private String username;
 
-    public void setUsername(String username)
-    {
-        this.username = username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public int getId()
-    {
-        return id;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setId(int id)
-    {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

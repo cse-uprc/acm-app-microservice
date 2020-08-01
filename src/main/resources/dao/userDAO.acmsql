@@ -1,0 +1,16 @@
+@NAME(getUsers)
+	SELECT 
+	    u.user_id,
+	    u.first_name,
+	    u.last_name,
+	    u.email,
+	    u.active,
+	    uc.username,
+	    uc.password,
+	    wr.web_role_text_id
+	FROM
+	    users u
+	        INNER JOIN
+	    user_credentials uc ON u.user_id = uc.user_id
+	        INNER JOIN
+	    web_roles wr ON u.web_role_id = wr.web_role_id

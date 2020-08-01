@@ -3,7 +3,9 @@ package com.acm.app.user.service;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-import com.acm.app.user.client.domain.request.UserGetRequest;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,6 +15,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.dao.UserDAO;
 
 @SpringBootTest
@@ -38,10 +41,13 @@ public class UserServiceTest {
 		userResponse.setFirstName("Test");
 		userResponse.setLastName("Last");
 
-		when(userDao.getUser(Mockito.any(UserGetRequest.class))).thenReturn(userResponse);
+		List<User> userList = new ArrayList<>();
+		userList.add(userResponse);
 
-		User userTest = userService.getUser(request);
+		when(userDao.getUser(Mockito.any(UserGetRequest.class))).thenReturn(userList);
 
-		assertEquals("Expect Users to be equal", userTest, userResponse);
+		List<User> userTest = userService.getUser(request);
+
+		assertEquals("Expect Users to be equal", userTest.get(0), userResponse);
 	}
 }

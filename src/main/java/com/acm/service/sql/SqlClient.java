@@ -3,9 +3,11 @@ package com.acm.service.sql;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,9 @@ public class SqlClient {
 		source.setUsername(prop.getProperty("spring.datasource.username"));
 		source.setPassword(prop.getProperty("spring.datasource.password"));
 		jdbcTemplateObject = new JdbcTemplate(source);
+	}
+
+	public static <T> List<T> getPage(String query, RowMapper<T> mapper) {
+		return jdbcTemplateObject.query(query, mapper);
 	}
 }

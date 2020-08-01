@@ -1,14 +1,19 @@
 package com.acm.app.user.dao;
 
-import com.acm.app.user.client.domain.request.UserGetRequest;
-import com.acm.app.user.client.domain.User;
+import static com.acm.app.user.mapper.UserMapper.USER_MAPPER;
+import static com.acm.service.sql.SqlClient.getPage;
 
-import com.acm.service.sql.SQLBuilder;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
-import static org.springframework.http.RequestEntity.post;
+import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
+import com.acm.service.sql.SQLBuilder;
 
 /**
  * Used to manage queries about users from the database
@@ -23,25 +28,17 @@ public class UserDAO {
 	private SQLBuilder sqlBuilder;
 
 	/**
+	 * Pull user information based on user get request
 	 *
-	 * @param user user object to add to database
-	 * @return user from database
+	 * @param request {@link UserGetRequest} object to search upon
+	 * @return List of {@link User}
 	 */
-	public User createUser(User user)
-	{
+	public List<User> getUser(UserGetRequest request) {
+		Map<String, Set<?>> params = new HashMap<>();
+
 		sqlBuilder.setQueryFile("userDAO");
-		//sqlBuilder.setParams(params);
-		//post(sqlBuilder.getSql("createUser"));
-		return user;
-	}
+		sqlBuilder.setParams(params);
 
-	public User getUser(UserGetRequest request) {
-		return null;
+		return getPage(sqlBuilder.getSql("getUsers"), USER_MAPPER);
 	}
-
-	public User getUsername(UserGetRequest request)
-	{
-		return null;
-	}
-
 }

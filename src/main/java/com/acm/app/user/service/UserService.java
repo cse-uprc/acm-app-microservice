@@ -1,10 +1,12 @@
 package com.acm.app.user.service;
 
-import com.acm.app.user.client.domain.request.UserGetRequest;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.dao.UserDAO;
 
 /**
@@ -20,11 +22,12 @@ public class UserService {
 	private UserDAO userDAO;
 
 	/**
+	 * Service method for getting data for a user
 	 *
 	 * @param request - requested user for lookup
 	 * @return user from DAO
 	 */
-	public User getUser(UserGetRequest request) {
+	public List<User> getUser(UserGetRequest request) {
 		return userDAO.getUser(request);
 	}
 }
