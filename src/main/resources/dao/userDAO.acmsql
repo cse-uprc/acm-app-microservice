@@ -14,3 +14,18 @@
 	    user_credentials uc ON u.user_id = uc.user_id
 	        INNER JOIN
 	    web_roles wr ON u.web_role_id = wr.web_role_id
+	    
+@NAME(getUserCredentials)
+	SELECT
+		uc.user_id,
+	    uc.username,
+	    uc.password
+	    
+	FROM
+	    users u
+	        INNER JOIN
+	    user_credentials uc ON u.user_id = uc.user_id
+	@WHERE(:userId:)
+		uc.user_id = :userId:
+	@WHERE(:username:)
+		uc.username = :username:

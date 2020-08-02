@@ -46,4 +46,18 @@ public class UserClientTest {
 
 		assertEquals("Users should be equal", userTest.get(0), userResponse);
 	}
+	
+	@Test
+	public void testGetUserCredentials() {
+		User userResponse = new User();
+		userResponse.setUsername("testuser");
+		userResponse.setPassword("password");
+
+		when(userController.getUserCredentials(Mockito.any(UserGetRequest.class))).thenReturn(userResponse);
+
+		User userTest = userClient.getUserCredentials(new UserGetRequest());
+
+		assertEquals("Users should be equal", userTest, userResponse);
+	}
+	
 }

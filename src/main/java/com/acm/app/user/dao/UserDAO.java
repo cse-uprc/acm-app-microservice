@@ -1,7 +1,9 @@
 package com.acm.app.user.dao;
 
 import static com.acm.app.user.mapper.UserMapper.USER_MAPPER;
+import static com.acm.app.user.mapper.UserCredentialMapper.USER_CREDENTIAL_MAPPER;
 import static com.acm.service.sql.SqlClient.getPage;
+import static com.acm.service.sql.SqlClient.getTemplate;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.service.sql.SQLBuilder;
+import com.google.common.collect.Sets;
 
 /**
  * Used to manage queries about users from the database
@@ -40,5 +43,22 @@ public class UserDAO {
 		sqlBuilder.setParams(params);
 
 		return getPage(sqlBuilder.getSql("getUsers"), USER_MAPPER);
+	}
+	
+	public User getUserCredentials(UserGetRequest request)
+	{
+		Map<String, Set<?>> params = new HashMap<>();
+		
+		if(request.getId() != 0) {
+			params.put("userId", Sets.newHashSet(request.getId()));
+		} else {
+			params.put("username", Sets.newHashSet(request.getUsername()));
+		}
+
+		sqlBuilder.setQueryFile("userDAO");
+		sqlBuilder.setParams(params);
+	
+
+		return getTemplate(sqlBuilder.getSql("getUserCredentials"), USER_CREDENTIAL_MAPPER);
 	}
 }

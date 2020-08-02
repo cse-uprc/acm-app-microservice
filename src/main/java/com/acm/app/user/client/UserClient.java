@@ -29,4 +29,14 @@ public class UserClient {
 	public List<User> getUser(UserGetRequest request) {
 		return userController.getUser(request);
 	}
+	
+	/**
+	 * Returns user credentials from userController
+	 * 
+	 * @param request - UserGetRequest
+	 * @return {@link User} object
+	 */
+	public User getUserCredentials(UserGetRequest request) {
+		return userController.getUserCredentials(request);
+	}
 }

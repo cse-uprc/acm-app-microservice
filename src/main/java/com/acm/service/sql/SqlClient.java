@@ -42,4 +42,8 @@ public class SqlClient {
 	public static <T> List<T> getPage(String query, RowMapper<T> mapper) {
 		return jdbcTemplateObject.query(query, mapper);
 	}
+	
+	public static <T> T getTemplate(String query, RowMapper<T> mapper) {
+		return jdbcTemplateObject.query(query, mapper).get(0);
+	}
 }

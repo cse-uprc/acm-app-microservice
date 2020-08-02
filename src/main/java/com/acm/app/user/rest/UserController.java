@@ -38,4 +38,10 @@ public class UserController {
 	public List<User> getUser(UserGetRequest request) {
 		return userService.getUser(request);
 	}
+	
+	@GetMapping("/credentials")
+	public User getUserCredentials(UserGetRequest request)
+	{
+		return userService.getUserCredentials(request);
+	}
 }

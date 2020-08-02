@@ -30,4 +30,9 @@ public class UserService {
 	public List<User> getUser(UserGetRequest request) {
 		return userDAO.getUser(request);
 	}
+	
+	public User getUserCredentials(UserGetRequest request)
+	{
+		return userDAO.getUserCredentials(request);
+	}
 }
