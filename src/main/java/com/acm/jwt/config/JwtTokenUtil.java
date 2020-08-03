@@ -1,18 +1,17 @@
 package com.acm.jwt.config;
 
+import com.acm.app.user.client.domain.User;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
+
+import javax.xml.bind.DatatypeConverter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
-import org.springframework.stereotype.Component;
-
-import com.acm.app.user.client.domain.User;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JwtTokenUtil implements Serializable {
@@ -68,5 +67,16 @@ public class JwtTokenUtil implements Serializable {
 			// Catch invalid token and return false
 			return false;
 		}
+	}
+	/**
+	 * Decodes a JWT token and returns the claims
+	 *
+	 * @param token - a JWT token that needs decoded
+	 * @return the decoded token
+	 */
+
+	public Claims decodeToken(String token)
+	{
+		return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary("acmmicroservice")).parseClaimsJws(token).getBody();
 	}
 }

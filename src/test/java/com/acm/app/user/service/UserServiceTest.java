@@ -1,11 +1,9 @@
 package com.acm.app.user.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
+import com.acm.app.user.dao.UserDAO;
+import com.acm.service.exceptions.UserNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,9 +12,11 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.acm.app.user.client.domain.User;
-import com.acm.app.user.client.domain.request.UserGetRequest;
-import com.acm.app.user.dao.UserDAO;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class UserServiceTest {
@@ -52,7 +52,8 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testGetUserCredentials() {
+	public void testGetUserCredentials() throws UserNotFoundException
+	{
 		User userResponse = new User();
 		userResponse.setUsername("testuser");
 		userResponse.setPassword("password");

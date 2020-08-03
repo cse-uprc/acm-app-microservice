@@ -1,7 +1,9 @@
 package com.acm.app.user.rest;
 
-import java.util.List;
-
+import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
+import com.acm.app.user.service.UserService;
+import com.acm.service.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,9 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acm.app.user.client.domain.User;
-import com.acm.app.user.client.domain.request.UserGetRequest;
-import com.acm.app.user.service.UserService;
+import java.util.List;
 
 /**
  * passes data to UserService from the client-side
@@ -40,7 +40,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/credentials")
-	public User getUserCredentials(UserGetRequest request)
+	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException
 	{
 		return userService.getUserCredentials(request);
 	}

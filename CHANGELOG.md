@@ -24,7 +24,7 @@
    ```
 ---
 
-## Release - 07/26/2020 v1.0.16
+## Release - 07/26/2020 v0.16.0
 
    ### <ins>Added:</ins>
    ```diff
@@ -40,14 +40,14 @@
    ! [kwinborne] - Merged UserProfile and UserCredentials into Use
    ```
 
-## Release - 07/27/2020 v1.0.16
+## Release - 07/27/2020 v0.16.0
 
    ### <ins>Changed:</ins>
    ```diff
    ! [kwinborne] - Updated Readme.md to include the skeleton for a guide for beginners
    ```
 
-## Release - 07/28/2020 v1.0.16
+## Release - 07/28/2020 v0.16.0
 
    ### <ins>Added:</ins>
    ```diff
@@ -59,7 +59,7 @@
    ! [kwinborne] - Filled in UserService, UserClient, UserController with appropriate methods
    ```
 
-## Release - 07/28/2020 v1.0.16
+## Release - 07/28/2020 v0.16.0
 
    ### <ins>Added:</ins>
    ```diff
@@ -71,7 +71,7 @@
    ! [kwinborne] - Cleaned up javadoc
    ```
 
-## Release - 07/28/2020 v1.0.16
+## Release - 07/28/2020 v0.16.0
    ### <ins>Added:</ins>
    ```diff
    + [kwinborne] - Created Authentication Service class
@@ -79,9 +79,30 @@
    + [kwinborne] - Created Authentication Controller class
    ```
    
-## Release - 08/01/2020 v1.0.17
+## Release - 08/01/2020 v0.16.0
    ### <ins>Added:</ins>
    ```diff
    + [shancock] - Created JWT models
    ```
 
+## Release - 08/02/2020 v0.16.0
+   ### <ins>Added:</ins>
+   ```diff
+   + [kwinborne] - Created test for AuthorizationService
+   ```
+   ### <ins>Changed:</ins>
+   ```diff
+   ! [kwinborne] - Added password hashing to AuthorizationService
+   ```
+
+## Release - 08/02/2020 v0.16.0
+   ### <ins>Added:</ins>
+   ```diff
+   + [sambutler1017] - Wrote test for authentication controller token generation method
+   + [kwinborne] - Created tests for AuthenticationController decode method
+   ```
+   ### <ins>Changed:</ins>
+   ```diff
+   ! [kwinborne] - Added decode token method to Authentication Controller
+   ! [kwinborne] - cleaned up code and javadocs for auth. service and controller.
+         ```

@@ -1,21 +1,20 @@
 package com.acm.jwt.config;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doReturn;
-
-import java.util.Date;
-
+import com.acm.app.user.client.domain.User;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.MalformedJwtException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.acm.app.user.client.domain.User;
+import java.util.Date;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doReturn;
 
 @SpringBootTest
 public class JwtTokenUtilTest {
@@ -77,5 +76,27 @@ public class JwtTokenUtilTest {
 
 		assertFalse("Token is Invalid", jwtTokenUtil.isValidToken(tokenInvalid));
 		assertTrue("Token is Valid", jwtTokenUtil.isValidToken(tokenValid));
+	}
+	@Test
+	void testTokenDecode()
+	{
+		User testUser = new User();
+		testUser.setUsername("test");
+		testUser.setUserId(1);
+		testUser.setPassword("password");
+		String token = jwtTokenUtil.generateToken(testUser);
+
+		Claims testToken = jwtTokenUtil.decodeToken(token);
+
+		Assertions.assertEquals(jwtTokenUtil.getUsernameFromToken(token),testToken.get("username"));
+
+
+	}
+	@Test
+	void testBrokenTokenDecode() throws MalformedJwtException
+	{
+		Assertions.assertThrows(MalformedJwtException.class,()->{
+			String notAToken="jfkldsjfklasd";
+			Claims brokenToken = jwtTokenUtil.decodeToken(notAToken);});
 	}
 }
