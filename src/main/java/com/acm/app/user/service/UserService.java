@@ -1,13 +1,14 @@
 package com.acm.app.user.service;
 
-import com.acm.app.user.client.domain.User;
-import com.acm.app.user.client.domain.request.UserGetRequest;
-import com.acm.app.user.dao.UserDAO;
-import com.acm.service.exceptions.UserNotFoundException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
+import com.acm.app.user.dao.UserDAO;
+import com.acm.library.globals.exceptions.UserNotFoundException;
 
 /**
  * UserService sends request to userDAO
@@ -30,9 +31,8 @@ public class UserService {
 	public List<User> getUser(UserGetRequest request) {
 		return userDAO.getUser(request);
 	}
-	
-	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException
-	{
+
+	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException {
 		return userDAO.getUserCredentials(request);
 	}
 }

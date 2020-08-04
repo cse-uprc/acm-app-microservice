@@ -1,13 +1,14 @@
 package com.acm.app.user.client;
 
-import com.acm.app.user.client.domain.User;
-import com.acm.app.user.client.domain.request.UserGetRequest;
-import com.acm.app.user.rest.UserController;
-import com.acm.service.exceptions.UserNotFoundException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
+import com.acm.app.user.rest.UserController;
+import com.acm.library.globals.exceptions.UserNotFoundException;
 
 /**
  * Handles outside requests for user data
@@ -29,15 +30,14 @@ public class UserClient {
 	public List<User> getUser(UserGetRequest request) {
 		return userController.getUser(request);
 	}
-	
+
 	/**
 	 * Returns user credentials from userController
 	 * 
 	 * @param request - UserGetRequest
 	 * @return {@link User} object
 	 */
-	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException
-	{
+	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException {
 		return userController.getUserCredentials(request);
 	}
 }

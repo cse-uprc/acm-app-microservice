@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import com.acm.app.user.client.domain.User;
-import com.acm.service.globals.enums.WebRole;
+import com.acm.library.globals.enums.WebRole;
 
 /**
  * formats the data returned from the DAO in manner that we want.

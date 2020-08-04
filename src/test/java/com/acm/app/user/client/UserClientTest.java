@@ -1,9 +1,11 @@
 package com.acm.app.user.client;
 
-import com.acm.app.user.client.domain.User;
-import com.acm.app.user.client.domain.request.UserGetRequest;
-import com.acm.app.user.rest.UserController;
-import com.acm.service.exceptions.UserNotFoundException;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,11 +14,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
+import com.acm.app.user.rest.UserController;
+import com.acm.library.globals.exceptions.UserNotFoundException;
 
 @SpringBootTest
 public class UserClientTest {
@@ -46,10 +47,9 @@ public class UserClientTest {
 
 		assertEquals("Users should be equal", userTest.get(0), userResponse);
 	}
-	
+
 	@Test
-	public void testGetUserCredentials() throws UserNotFoundException
-	{
+	public void testGetUserCredentials() throws UserNotFoundException {
 		User userResponse = new User();
 		userResponse.setUsername("testuser");
 		userResponse.setPassword("password");
@@ -60,5 +60,5 @@ public class UserClientTest {
 
 		assertEquals("Users should be equal", userTest, userResponse);
 	}
-	
+
 }

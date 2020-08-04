@@ -1,8 +1,8 @@
 package com.acm.service.sql;
 
-import static com.acm.service.globals.enums.ACMSqlTags.NAME;
-import static com.acm.service.globals.enums.ACMSqlTags.VALUE_ID;
-import static com.acm.service.globals.enums.QueryStatements.WHERE;
+import static com.acm.library.globals.enums.ACMSqlTags.NAME;
+import static com.acm.library.globals.enums.ACMSqlTags.VALUE_ID;
+import static com.acm.library.globals.enums.QueryStatements.WHERE;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,10 +15,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.acm.library.globals.enums.QueryStatements;
+import com.acm.library.globals.exceptions.InvalidParamValueException;
+import com.acm.library.globals.exceptions.NullParamsException;
 import com.acm.service.activeprofile.ActiveProfile;
-import com.acm.service.exceptions.InvalidParamValueException;
-import com.acm.service.exceptions.NullParamsException;
-import com.acm.service.globals.enums.QueryStatements;
 
 /**
  * Used for reading and processing sql blocks of code. This file can only be

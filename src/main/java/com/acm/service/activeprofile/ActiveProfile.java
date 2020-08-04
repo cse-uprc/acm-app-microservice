@@ -1,8 +1,8 @@
 package com.acm.service.activeprofile;
 
-import static com.acm.service.globals.variables.Environments.DEV_ENV;
-import static com.acm.service.globals.variables.Environments.LOCAL_ENV;
-import static com.acm.service.globals.variables.Environments.PROD_ENV;
+import static com.acm.library.globals.variables.Environments.DEV_ENV;
+import static com.acm.library.globals.variables.Environments.LOCAL_ENV;
+import static com.acm.library.globals.variables.Environments.PROD_ENV;
 
 import org.springframework.stereotype.Component;
 

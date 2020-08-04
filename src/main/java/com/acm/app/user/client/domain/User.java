@@ -1,6 +1,6 @@
 package com.acm.app.user.client.domain;
 
-import com.acm.service.globals.enums.WebRole;
+import com.acm.library.globals.enums.WebRole;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
