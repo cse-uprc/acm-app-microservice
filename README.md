@@ -29,6 +29,8 @@
  
  14. Rules of thumb
  
+ 15. Versioning
+ 
 ## Section 1
 ### Introduction
 
@@ -162,5 +164,23 @@ To help develop and maintain this repository, you will need a few tools to creat
   * After approval, a pull request should be posted in slack under the channel #merge-request.
   * Every commit should include a matching update to the changelog.md file, describing what is new, what has changed. 
   * Changelog additions should be formatted as follows: [yourname] - A short description of the change.
+  
+  ## Section 15
+  ### Versioning
+  Versioning should be as follows: 
+  * Major versions will be incremented when "breaking changes" occur, which include migration to a different server, or changing frameworks.
+  
+  * Minor versions will be incremented when new functions are added, such as creating a new way to log in, while remaining compatible with the existing code base.
+  
+  * Patch versions will be incremented when a pull request is merged to production outside of normal release schedule. An example is clearing a bug.
+  
+  * Remember: v1.0.0 is not a version number, while version 1.0.0 is. Documentation, tags, and release should conform to semantic versioning, according to [semver.org]
+  
+  * Version numbers should be assigned as a git tag, and only changed if the preceding rules have been followed, and only during releases.
+  
+  * Releases should be released as X.Y.Z-rc.A until proven stable, then this will change to X.Y.Z .
+  
+  * Because versioning was not started from the beginning of this repository, the versions prior to 1.0.0-rc.1 have minor versions corresponding to merged pull requests during development.
+ 
   
 
