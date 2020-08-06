@@ -19,8 +19,8 @@ import com.acm.service.activeprofile.ActiveProfile;
 public class SqlClient {
 
 	private static JdbcTemplate jdbcTemplateObject;
-	private static DriverManagerDataSource source = new DriverManagerDataSource();
-	private static ActiveProfile profile = new ActiveProfile();
+	private static final DriverManagerDataSource source = new DriverManagerDataSource();
+	private static final ActiveProfile profile = new ActiveProfile();
 
 	Properties prop = new Properties();
 
@@ -45,5 +45,8 @@ public class SqlClient {
 	
 	public static <T> T getTemplate(String query, RowMapper<T> mapper) {
 		return jdbcTemplateObject.query(query, mapper).get(0);
+	}
+	public static void post(String query) {
+		jdbcTemplateObject.execute(query);
 	}
 }

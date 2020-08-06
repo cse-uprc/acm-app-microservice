@@ -14,69 +14,70 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
-public class JwtTokenUtil implements Serializable {
+public class JwtTokenUtil implements Serializable
+{
 
-	private static final long serialVersionUID = -2550185165626007488L;
+    private static final long serialVersionUID = -2550185165626007488L;
 
-	public static final long JWT_TOKEN_VALIDITY = 18000000;
+    public static final long JWT_TOKEN_VALIDITY = 18000000;
 
-	private String secret = "acmmicroservice";
+    private final String secret = "acmmicroservice";
 
-	public String getUsernameFromToken(String token) {
-		return getClaimFromToken(token, Claims::getSubject);
-	}
+    public String getUsernameFromToken(String token) {
+        return getClaimFromToken(token, Claims::getSubject);
+    }
 
-	public Date getExpirationDateFromToken(String token) {
-		return getClaimFromToken(token, Claims::getExpiration);
-	}
+    public Date getExpirationDateFromToken(String token) {
+        return getClaimFromToken(token, Claims::getExpiration);
+    }
 
-	public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
-		final Claims claims = getAllClaimsFromToken(token);
-		return claimsResolver.apply(claims);
-	}
+    public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = getAllClaimsFromToken(token);
+        return claimsResolver.apply(claims);
+    }
 
-	private Claims getAllClaimsFromToken(String token) {
-		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-	}
+    private Claims getAllClaimsFromToken(String token) {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+    }
 
-	public Boolean isTokenExpired(String token) {
-		final Date expiration = getExpirationDateFromToken(token);
-		return expiration.before(new Date());
-	}
+    public Boolean isTokenExpired(String token) {
+        final Date expiration = getExpirationDateFromToken(token);
+        return expiration.before(new Date());
+    }
 
-	public String generateToken(User user) {
-		Map<String, Object> claims = new HashMap<>();
-		claims.put("username", user.getUsername());
-		claims.put("password", user.getPassword());
-		claims.put("userId", user.getUserId());
-		claims.put("firstName", user.getFirstName());
-		claims.put("lastName", user.getLastName());
-		return doGenerateToken(claims, user.getUsername());
-	}
+    public String generateToken(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("username", user.getUsername());
+        claims.put("password", user.getPassword());
+        claims.put("userId", user.getUserId());
+        claims.put("firstName", user.getFirstName());
+        claims.put("lastName", user.getLastName());
+        return doGenerateToken(claims, user.getUsername());
+    }
 
-	private String doGenerateToken(Map<String, Object> claims, String subject) {
-		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
-				.signWith(SignatureAlgorithm.HS512, secret).compact();
-	}
+    private String doGenerateToken(Map<String, Object> claims, String subject) {
+        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
+                .signWith(SignatureAlgorithm.HS512, secret).compact();
+    }
 
-	public boolean isValidToken(String token) {
-		try {
-			return !isTokenExpired(token);
-		} catch (Exception e) {
-			// Catch invalid token and return false
-			return false;
-		}
-	}
-	/**
-	 * Decodes a JWT token and returns the claims
-	 *
-	 * @param token - a JWT token that needs decoded
-	 * @return the decoded token
-	 */
+    public boolean isValidToken(String token) {
+        try {
+            return !isTokenExpired(token);
+        } catch (Exception e) {
+            // Catch invalid token and return false
+            return false;
+        }
+    }
 
-	public Claims decodeToken(String token)
-	{
-		return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary("acmmicroservice")).parseClaimsJws(token).getBody();
-	}
+    /**
+     * Decodes a JWT token and returns the claims
+     *
+     * @param token - a JWT token that needs decoded
+     * @return the decoded token
+     */
+    public Claims decodeToken(String token) {
+        return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary("acmmicroservice")).parseClaimsJws(token)
+                .getBody();
+    }
 }

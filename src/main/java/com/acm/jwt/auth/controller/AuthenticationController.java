@@ -38,15 +38,13 @@ public class AuthenticationController
      * @throws Exception - if authentication request does not match a user.
      */
     @PostMapping("/authenticate")
-    public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authenticationRequest) throws Exception
-    {
+    public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         User user = auth.verifyUser(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         final String token = jwtTokenUtil.generateToken(user);
         return ResponseEntity.ok(new JwtResponse(token));
 
     }
-
 
 
 }

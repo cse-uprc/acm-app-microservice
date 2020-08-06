@@ -2,8 +2,7 @@ package com.acm.app.user.dao;
 
 import static com.acm.app.user.mapper.UserCredentialMapper.USER_CREDENTIAL_MAPPER;
 import static com.acm.app.user.mapper.UserMapper.USER_MAPPER;
-import static com.acm.service.sql.SqlClient.getPage;
-import static com.acm.service.sql.SqlClient.getTemplate;
+import static com.acm.service.sql.SqlClient.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -63,4 +62,19 @@ public class UserDAO {
 
 		return getTemplate(sqlBuilder.getSql("getUserCredentials"), USER_CREDENTIAL_MAPPER);
 	}
-}
+
+	public User createNewUser(User newUser) {
+		Map<String, Set<?>> params = new HashMap<>();
+
+		params.put("firstName", Sets.newHashSet(newUser.getFirstName()));
+		params.put("lastName", Sets.newHashSet(newUser.getLastName()));
+		params.put("email", Sets.newHashSet(newUser.getEmail()));
+
+		sqlBuilder.setQueryFile("userDAO");
+		sqlBuilder.setParams(params);
+
+		post(sqlBuilder.getSql("createUser"));
+
+		return newUser;
+	}
+	}

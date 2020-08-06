@@ -1,8 +1,14 @@
 package com.acm.jwt.config;
 
-import com.acm.app.user.client.domain.User;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.MalformedJwtException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doReturn;
+
+import java.util.Date;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,19 +16,19 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Date;
+import com.acm.app.user.client.domain.User;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doReturn;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.MalformedJwtException;
 
 @SpringBootTest
+@SuppressWarnings("unused")
 public class JwtTokenUtilTest {
 
 	@Spy
 	private JwtTokenUtil jwtTokenUtil;
 
-	private User user = new User();
+	private final User user = new User();
 
 	@BeforeEach
 	public void setUpTests() {
@@ -77,9 +83,9 @@ public class JwtTokenUtilTest {
 		assertFalse("Token is Invalid", jwtTokenUtil.isValidToken(tokenInvalid));
 		assertTrue("Token is Valid", jwtTokenUtil.isValidToken(tokenValid));
 	}
+
 	@Test
-	void testTokenDecode()
-	{
+	void testTokenDecode() {
 		User testUser = new User();
 		testUser.setUsername("test");
 		testUser.setUserId(1);
@@ -88,15 +94,15 @@ public class JwtTokenUtilTest {
 
 		Claims testToken = jwtTokenUtil.decodeToken(token);
 
-		Assertions.assertEquals(jwtTokenUtil.getUsernameFromToken(token),testToken.get("username"));
-
+		Assertions.assertEquals(jwtTokenUtil.getUsernameFromToken(token), testToken.get("username"));
 
 	}
+
 	@Test
-	void testBrokenTokenDecode() throws MalformedJwtException
-	{
-		Assertions.assertThrows(MalformedJwtException.class,()->{
-			String notAToken="jfkldsjfklasd";
-			Claims brokenToken = jwtTokenUtil.decodeToken(notAToken);});
+	void testBrokenTokenDecode() throws MalformedJwtException {
+		Assertions.assertThrows(MalformedJwtException.class, () -> {
+			String notAToken = "jfkldsjfklasd";
+			Claims brokenToken = jwtTokenUtil.decodeToken(notAToken);
+		});
 	}
 }

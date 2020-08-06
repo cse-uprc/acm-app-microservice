@@ -27,6 +27,7 @@ public class UserClientTest {
 	@Mock
 	private UserController userController;
 
+
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
@@ -60,5 +61,6 @@ public class UserClientTest {
 
 		assertEquals("Users should be equal", userTest, userResponse);
 	}
+
 
 }

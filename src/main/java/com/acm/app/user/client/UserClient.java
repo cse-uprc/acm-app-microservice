@@ -10,6 +10,8 @@ import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.rest.UserController;
 import com.acm.library.globals.exceptions.UserNotFoundException;
 
+import javax.mail.MessagingException;
+
 /**
  * Handles outside requests for user data
  *
@@ -17,7 +19,8 @@ import com.acm.library.globals.exceptions.UserNotFoundException;
  * @since 7/30/2020
  */
 @Component
-public class UserClient {
+public class UserClient
+{
 
 	@Autowired
 	private UserController userController;
@@ -33,11 +36,23 @@ public class UserClient {
 
 	/**
 	 * Returns user credentials from userController
-	 * 
+	 *
 	 * @param request - UserGetRequest
 	 * @return {@link User} object
 	 */
 	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException {
 		return userController.getUserCredentials(request);
 	}
+
+	/**
+	 * Create a new user
+	 *
+	 * @param user - the new user to be created
+	 * @return a response from the userController
+	 */
+
+	public User createNewUser(User user)  {
+		return userController.createNewUser(user);
+	}
+
 }

@@ -35,4 +35,14 @@ public class UserService {
 	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException {
 		return userDAO.getUserCredentials(request);
 	}
+
+	/**
+	 * Create a new user, passed to the DAO.
+	 *
+	 * @param user to be created
+	 * @return user response from DAO
+	 */
+    public User createNewUser(User user) {
+		return userDAO.createNewUser(user);
+    }
 }
