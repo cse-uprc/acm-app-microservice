@@ -36,7 +36,7 @@ public class ActiveProfile {
     public String getPropertyFilePath() {
         String profile = System.getProperty("spring.profiles.active");
         if (profile != null && profile.equals("production")) {
-            return PROD_ENV + "/resources/application-prod.properties";
+            return PROD_ENV + "/resources/application-production.properties";
         } else if (profile != null && profile.equals("development")) {
             return DEV_ENV + "/resources/application-development.properties";
         } else {
