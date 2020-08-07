@@ -5,6 +5,7 @@ import com.acm.jwt.auth.service.AuthenticationService;
 import com.acm.jwt.config.JwtTokenUtil;
 import com.acm.jwt.model.JwtRequest;
 import com.acm.jwt.model.JwtResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 @Controller
-public class AuthenticationController
-{
+public class AuthenticationController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
@@ -45,6 +45,5 @@ public class AuthenticationController
         return ResponseEntity.ok(new JwtResponse(token));
 
     }
-
 
 }

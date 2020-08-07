@@ -1,16 +1,18 @@
 package com.acm.app.mail.service;
 
-import com.acm.app.mail.client.domain.MailMessage;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import java.util.Date;
+import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
-import java.util.Date;
-import java.util.Properties;
+
+import com.acm.app.mail.client.domain.MailMessage;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * Service class to send an email to a user
@@ -19,8 +21,7 @@ import java.util.Properties;
  * @since 08/04/2020
  */
 @Component
-public class MailService
-{
+public class MailService {
 
     @Value("${spring.mail.username}")
     private String USERNAME;
@@ -58,7 +59,7 @@ public class MailService
      * Builds out the properties needed to send a message
      *
      * @return {@link Properties} object to sent the fields needed to communicate
-     * with the gmail server
+     *         with the gmail server
      */
     private Properties getProperties() {
         Properties props = new Properties();

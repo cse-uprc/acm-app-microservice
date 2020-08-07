@@ -9,6 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import com.acm.library.globals.exceptions.InvalidParamValueException;
+import com.acm.service.activeprofile.ActiveProfile;
+import com.acm.service.sql.SQLBuilder;
+import com.google.common.collect.Sets;
+
 import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,11 +22,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.acm.library.globals.exceptions.InvalidParamValueException;
-import com.acm.service.activeprofile.ActiveProfile;
-import com.acm.service.sql.SQLBuilder;
-import com.google.common.collect.Sets;
 
 @SpringBootTest
 public class SQLBuilderTest {

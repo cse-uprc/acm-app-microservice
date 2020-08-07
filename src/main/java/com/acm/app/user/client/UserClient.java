@@ -2,15 +2,13 @@ package com.acm.app.user.client;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.rest.UserController;
 import com.acm.library.globals.exceptions.UserNotFoundException;
 
-import javax.mail.MessagingException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Handles outside requests for user data
@@ -19,8 +17,7 @@ import javax.mail.MessagingException;
  * @since 7/30/2020
  */
 @Component
-public class UserClient
-{
+public class UserClient {
 
 	@Autowired
 	private UserController userController;
@@ -51,7 +48,7 @@ public class UserClient
 	 * @return a response from the userController
 	 */
 
-	public User createNewUser(User user)  {
+	public User createNewUser(User user) {
 		return userController.createNewUser(user);
 	}
 

@@ -1,8 +1,10 @@
 package com.acm.service.activeprofile;
 
-import org.springframework.stereotype.Component;
+import static com.acm.library.globals.variables.Environments.DEV_ENV;
+import static com.acm.library.globals.variables.Environments.LOCAL_ENV;
+import static com.acm.library.globals.variables.Environments.PROD_ENV;
 
-import static com.acm.library.globals.variables.Environments.*;
+import org.springframework.stereotype.Component;
 
 /**
  * Used to set and get the property files and active profile for the application
@@ -12,8 +14,7 @@ import static com.acm.library.globals.variables.Environments.*;
  * @since July 22, 2020
  */
 @Component
-public class ActiveProfile
-{
+public class ActiveProfile {
     /**
      * Method to set the current active profile the application is running in
      * <p>

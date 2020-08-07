@@ -6,6 +6,11 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
+import com.acm.app.user.rest.UserController;
+import com.acm.library.globals.exceptions.UserNotFoundException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,11 +19,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.acm.app.user.client.domain.User;
-import com.acm.app.user.client.domain.request.UserGetRequest;
-import com.acm.app.user.rest.UserController;
-import com.acm.library.globals.exceptions.UserNotFoundException;
-
 @SpringBootTest
 public class UserClientTest {
 	@InjectMocks
@@ -26,7 +26,6 @@ public class UserClientTest {
 
 	@Mock
 	private UserController userController;
-
 
 	@BeforeEach
 	public void setUp() {
@@ -61,6 +60,5 @@ public class UserClientTest {
 
 		assertEquals("Users should be equal", userTest, userResponse);
 	}
-
 
 }

@@ -2,13 +2,13 @@ package com.acm.app.user.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.dao.UserDAO;
 import com.acm.library.globals.exceptions.UserNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * UserService sends request to userDAO
@@ -42,7 +42,7 @@ public class UserService {
 	 * @param user to be created
 	 * @return user response from DAO
 	 */
-    public User createNewUser(User user) {
+	public User createNewUser(User user) {
 		return userDAO.createNewUser(user);
-    }
+	}
 }

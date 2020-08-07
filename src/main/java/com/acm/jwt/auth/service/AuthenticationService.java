@@ -5,6 +5,7 @@ import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.library.globals.exceptions.InvalidPasswordException;
 import com.acm.library.service.PasswordHash;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +18,7 @@ import org.springframework.stereotype.Component;
  * @since 8/2/2020
  */
 @Component
-public class AuthenticationService
-{
+public class AuthenticationService {
     @Autowired
     private UserClient userClient;
 

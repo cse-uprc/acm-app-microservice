@@ -1,11 +1,8 @@
 package com.acm.service.sql;
 
-import com.acm.library.globals.enums.QueryStatements;
-import com.acm.library.globals.exceptions.InvalidParamValueException;
-import com.acm.library.globals.exceptions.NullParamsException;
-import com.acm.service.activeprofile.ActiveProfile;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import static com.acm.library.globals.enums.ACMSqlTags.NAME;
+import static com.acm.library.globals.enums.ACMSqlTags.VALUE_ID;
+import static com.acm.library.globals.enums.QueryStatements.WHERE;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,9 +12,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.acm.library.globals.enums.ACMSqlTags.NAME;
-import static com.acm.library.globals.enums.ACMSqlTags.VALUE_ID;
-import static com.acm.library.globals.enums.QueryStatements.WHERE;
+import com.acm.library.globals.enums.QueryStatements;
+import com.acm.library.globals.exceptions.InvalidParamValueException;
+import com.acm.library.globals.exceptions.NullParamsException;
+import com.acm.service.activeprofile.ActiveProfile;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Used for reading and processing sql blocks of code. This file can only be
@@ -27,8 +28,7 @@ import static com.acm.library.globals.enums.QueryStatements.WHERE;
  * @since July 25, 2020
  */
 @Component
-public class SQLBuilder
-{
+public class SQLBuilder {
     private static String queryFile;
 
     private static Map<String, Set<?>> params;

@@ -1,14 +1,19 @@
 package com.acm.app.mail.rest;
 
-import com.acm.app.mail.client.domain.MailMessage;
-import com.acm.app.mail.service.MailService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import javax.mail.MessagingException;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import com.acm.app.mail.client.domain.MailMessage;
+import com.acm.app.mail.service.MailService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controller to send email's to users
@@ -20,8 +25,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("api/acm/mail")
 @Controller
-public class MailController
-{
+public class MailController {
 
     @Autowired
     private MailService mailService;

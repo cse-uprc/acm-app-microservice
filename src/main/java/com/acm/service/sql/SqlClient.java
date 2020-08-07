@@ -6,13 +6,13 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
+import com.acm.service.activeprofile.ActiveProfile;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import com.acm.service.activeprofile.ActiveProfile;
 
 @Component
 @Service
@@ -42,10 +42,11 @@ public class SqlClient {
 	public static <T> List<T> getPage(String query, RowMapper<T> mapper) {
 		return jdbcTemplateObject.query(query, mapper);
 	}
-	
+
 	public static <T> T getTemplate(String query, RowMapper<T> mapper) {
 		return jdbcTemplateObject.query(query, mapper).get(0);
 	}
+
 	public static void post(String query) {
 		jdbcTemplateObject.execute(query);
 	}

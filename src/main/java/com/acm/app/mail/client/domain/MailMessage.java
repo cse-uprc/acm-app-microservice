@@ -8,8 +8,7 @@ import java.util.Date;
  * @author Sam Butler
  * @since 8/04/2020
  */
-public class MailMessage
-{
+public class MailMessage {
 
     private String subject;
     private String recipient;

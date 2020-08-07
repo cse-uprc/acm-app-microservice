@@ -6,8 +6,7 @@ package com.acm.app.user.client.domain.request;
  * @author Kiyle Winborne
  * @since 7/30/2020
  */
-public class UserGetRequest
-{
+public class UserGetRequest {
 
     private int id;
     private String username;

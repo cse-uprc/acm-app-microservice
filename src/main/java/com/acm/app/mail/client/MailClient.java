@@ -2,10 +2,10 @@ package com.acm.app.mail.client;
 
 import javax.mail.MessagingException;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.acm.app.mail.client.domain.MailMessage;
 import com.acm.app.mail.rest.MailController;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**

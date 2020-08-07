@@ -9,14 +9,14 @@ import static org.mockito.Mockito.doReturn;
 
 import java.util.Date;
 
+import com.acm.app.user.client.domain.User;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.acm.app.user.client.domain.User;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.MalformedJwtException;

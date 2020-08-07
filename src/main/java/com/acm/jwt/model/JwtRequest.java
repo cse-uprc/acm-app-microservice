@@ -8,8 +8,7 @@ import java.io.Serializable;
  * @author SethHancock
  * @since August 1, 2020
  */
-public class JwtRequest implements Serializable
-{
+public class JwtRequest implements Serializable {
     private static final long serialVersionUID = 5926468583005169420L;
     private String username;
     private String password;

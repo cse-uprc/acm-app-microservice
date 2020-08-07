@@ -2,21 +2,23 @@ package com.acm.app.user.dao;
 
 import static com.acm.app.user.mapper.UserCredentialMapper.USER_CREDENTIAL_MAPPER;
 import static com.acm.app.user.mapper.UserMapper.USER_MAPPER;
-import static com.acm.service.sql.SqlClient.*;
+import static com.acm.service.sql.SqlClient.getPage;
+import static com.acm.service.sql.SqlClient.getTemplate;
+import static com.acm.service.sql.SqlClient.post;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.library.globals.exceptions.UserNotFoundException;
 import com.acm.service.sql.SQLBuilder;
 import com.google.common.collect.Sets;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Used to manage queries about users from the database
@@ -77,4 +79,4 @@ public class UserDAO {
 
 		return newUser;
 	}
-	}
+}

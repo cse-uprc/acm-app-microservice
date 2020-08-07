@@ -6,6 +6,11 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.acm.app.user.client.domain.User;
+import com.acm.app.user.client.domain.request.UserGetRequest;
+import com.acm.app.user.dao.UserDAO;
+import com.acm.library.globals.exceptions.UserNotFoundException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,11 +18,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.acm.app.user.client.domain.User;
-import com.acm.app.user.client.domain.request.UserGetRequest;
-import com.acm.app.user.dao.UserDAO;
-import com.acm.library.globals.exceptions.UserNotFoundException;
 
 @SpringBootTest
 public class UserServiceTest {
@@ -66,8 +66,7 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void testCreateUser()
-	{
+	public void testCreateUser() {
 		User userResponse = new User();
 		userResponse.setFirstName("test");
 		userResponse.setLastName("user");
@@ -76,6 +75,6 @@ public class UserServiceTest {
 		when(userDao.createNewUser(Mockito.any(User.class))).thenReturn(userResponse);
 
 		User newUser = userService.createNewUser(new User());
-		assertEquals(userResponse,newUser);
+		assertEquals(userResponse, newUser);
 	}
 }

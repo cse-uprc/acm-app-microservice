@@ -1,13 +1,14 @@
 package com.acm.app.user.mapper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.acm.app.user.client.domain.User;
 import com.acm.library.globals.enums.WebRole;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * formats the data returned from the DAO in manner that we want.
@@ -16,8 +17,7 @@ import java.sql.SQLException;
  * @since 7/30/2020
  */
 @Component
-public class UserMapper implements RowMapper<User>
-{
+public class UserMapper implements RowMapper<User> {
     @Autowired
     public final static UserMapper USER_MAPPER = new UserMapper();
 
