@@ -34,6 +34,8 @@ public class UserCredentialMapper implements RowMapper<User> {
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
         user.setUserId(rs.getInt("user_id"));
+        user.setFirstName(rs.getString("first_name"));
+        user.setFirstName(rs.getString("last_name"));
         return user;
     }
 }

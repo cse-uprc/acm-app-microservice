@@ -19,8 +19,9 @@
 	SELECT
 		uc.user_id,
 	    uc.username,
-	    uc.password
-	    
+	    uc.password,
+		u.first_name,
+		u.last_name
 	FROM
 	    users u
 	        INNER JOIN
