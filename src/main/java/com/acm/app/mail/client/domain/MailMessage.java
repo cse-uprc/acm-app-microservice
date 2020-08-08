@@ -1,6 +1,7 @@
 package com.acm.app.mail.client.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Object class to create a MailMessage object
@@ -11,7 +12,7 @@ import java.util.Date;
 public class MailMessage {
 
     private String subject;
-    private String recipient;
+    private List<String> recipients;
     private String body;
     private Date dateSent;
 
@@ -23,12 +24,12 @@ public class MailMessage {
         this.subject = subject;
     }
 
-    public String getRecipient() {
-        return recipient;
+    public List<String> getRecipients() {
+        return recipients;
     }
 
-    public void setRecipient(String recipient) {
-        this.recipient = recipient;
+    public void setRecipients(List<String> recipient) {
+        this.recipients = recipient;
     }
 
     public String getBody() {

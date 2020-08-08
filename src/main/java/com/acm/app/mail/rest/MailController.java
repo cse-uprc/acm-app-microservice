@@ -35,10 +35,10 @@ public class MailController {
      *
      * @param message - The message object to be sent
      * @return {@link MailMessage} object of the send message
-     * @throws MessagingException if there is a problem with the email
+     * @throws Exception
      */
     @PostMapping(produces = APPLICATION_JSON_VALUE)
-    public MailMessage sendMessage(@RequestBody MailMessage message) throws MessagingException {
+    public MailMessage sendMessage(@RequestBody MailMessage message) throws Exception {
         return mailService.send(message);
     }
 }

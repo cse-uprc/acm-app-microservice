@@ -1,5 +1,6 @@
 package com.acm.app.mail.service;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
@@ -8,6 +9,7 @@ import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.InternetAddress;
 
 import com.acm.app.mail.client.domain.MailMessage;
 
@@ -34,13 +36,16 @@ public class MailService {
      *
      * @param sentMessage - {@link MailMessage} object to send
      * @return {@link MailMessage} of what was sent and when it was sent
-     * @throws MessagingException if there is a problem with sending an email
+     * @throws Exception
      */
-    public MailMessage send(MailMessage sentMessage) throws MessagingException {
+    public MailMessage send(MailMessage sentMessage) throws Exception {
         Session session = Session.getInstance(getProperties(), null);
         MimeMessage message = new MimeMessage(session);
 
-        message.setRecipients(Message.RecipientType.TO, sentMessage.getRecipient());
+        for (String recipient : sentMessage.getRecipients()) {
+            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+        }
+
         message.setSubject(sentMessage.getSubject());
         message.setSentDate(new Date());
         message.setText(sentMessage.getBody());

@@ -26,9 +26,9 @@ public class MailClient {
 	 * 
 	 * @param message - The message object to be sent
 	 * @return {@link MailMessage} object of the send message
-	 * @throws MessagingException - Thrown if sending a message fails
+	 * @throws Exception
 	 */
-	public MailMessage sendMessage(MailMessage message) throws MessagingException {
+	public MailMessage sendMessage(MailMessage message) throws Exception {
 		return mailController.sendMessage(message);
 	}
 }
