@@ -18,8 +18,8 @@
 @NAME(getUserCredentials)
 	SELECT
 		uc.user_id,
-	    uc.username,
-	    uc.password,
+		uc.username,
+		uc.password,
 		u.first_name,
 		u.last_name
 	FROM

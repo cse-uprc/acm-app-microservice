@@ -27,7 +27,7 @@
 
 ## Release - 08/07/2020 v1.1.1
 
-   ### <ins>Added:</ins>
+   ### <ins>Changed:</ins>
    ```diff
    + [jvandyke] - Updated getUserCredentials query and UserCredentialMapper to include first and last name.
    ```
