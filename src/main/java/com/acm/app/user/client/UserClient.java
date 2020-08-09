@@ -48,7 +48,7 @@ public class UserClient {
 	 * @return a response from the userController
 	 */
 
-	public User createNewUser(User user) {
+	public User createNewUser(User user) throws Exception {
 		return userController.createNewUser(user);
 	}
 

@@ -24,7 +24,14 @@
    ```
 ---
 ---
+
 ## Release - 08/08/2020 v1.1.0
+
+   ### <ins>Changed:</ins>
+   ```diff
+   + [kwinborne] - Implemented email functionality to create user
+   ```
+
 
    ### <ins>Changed:</ins>
    ```diff

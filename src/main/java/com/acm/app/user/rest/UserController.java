@@ -1,8 +1,7 @@
 package com.acm.app.user.rest;
 
-import java.util.List;
-
 import com.acm.app.mail.client.MailClient;
+import com.acm.app.mail.client.domain.MailMessage;
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.service.UserService;
@@ -16,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * passes data to UserService from the client-side
@@ -51,13 +53,20 @@ public class UserController {
 	}
 
 	/**
-	 * Pass a create user request to the userService
+	 * Pass a create user request to the userService and emails the admins to notify them.
 	 *
 	 * @param user - the user to be created
 	 * @return user response from userService
 	 */
 	@PostMapping()
-	public User createNewUser(@RequestBody User user) {
+	public User createNewUser(@RequestBody User user) throws Exception {
+		MailMessage message = new MailMessage();
+		message.setBody("New User Account Requested for: " + user.getFirstName()+" "+user.getLastName());
+		message.setSubject("ACM APP - New User Request");
+		message.setRecipients(Arrays.asList("kiyleawinborne@gmail.com","sambutler1017@icloud.com","josuemvd@gmail.com", "steven.lengel@rockets.utoledo.edu"));
+		mailClient.sendMessage(message);
+
 		return userService.createNewUser(user);
 	}
+
 }

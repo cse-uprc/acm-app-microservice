@@ -4,11 +4,16 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
+import com.acm.app.mail.client.MailClient;
+import com.acm.app.mail.client.domain.MailMessage;
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.dao.UserDAO;
+import com.acm.app.user.rest.UserController;
 import com.acm.library.globals.exceptions.UserNotFoundException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +29,9 @@ public class UserServiceTest {
 
 	@InjectMocks
 	private UserService userService;
+
+	@InjectMocks
+	private UserController userController;
 
 	@InjectMocks
 	private UserGetRequest request;
