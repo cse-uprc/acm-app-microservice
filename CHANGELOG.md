@@ -24,8 +24,17 @@
    ```
 ---
 ---
+## Release - 08/08/2020 v1.1.0
 
-## Release - 08/07/2020 v1.1.1
+   ### <ins>Changed:</ins>
+   ```diff
+   + [kwinborne] - Added Github package skeleton
+   + [kwinborne] - Added Application package skeleton
+   + [kwinborne] - Added Calendar package skeleton
+   ```
+
+
+## Release - 08/07/2020 v1.1.0
 
    ### <ins>Changed:</ins>
    ```diff
