@@ -29,6 +29,7 @@
 
    ### <ins>Changed:</ins>
    ```diff
+   + [kwinborne] - Created Update User endpoint 
    + [kwinborne] - Implemented email functionality to create user
    ```
 

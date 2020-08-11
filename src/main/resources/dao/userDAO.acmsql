@@ -33,3 +33,15 @@
 @NAME(createUser)
     INSERT INTO dim_user (first_name, last_name, email)
      VALUES(:firstName:, :lastName:, :email:)
+
+@NAME(updateUser)
+    UPDATE users u
+    INNER JOIN user_credentials uc ON u.user_id = uc.user_id
+    SET
+        u.first_name = :firstName:,
+        u.last_name = :lastName:,
+        u.email = :email:,
+        uc.username = :username:,
+        uc.password = :password:
+    WHERE
+        u.user_id = :userId:

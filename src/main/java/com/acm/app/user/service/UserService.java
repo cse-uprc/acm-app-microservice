@@ -45,4 +45,13 @@ public class UserService {
 	public User createNewUser(User user) {
 		return userDAO.createNewUser(user);
 	}
+
+	/**
+	 * Updates a users information by passing it to the DAO.
+	 * @param user - user to be modified
+	 * @return - the user that has been modified.
+	 */
+    public User updateUser(User user) {
+		return userDAO.updateUser(user);
+    }
 }

@@ -85,4 +85,17 @@ public class UserServiceTest {
 		User newUser = userService.createNewUser(new User());
 		assertEquals(userResponse, newUser);
 	}
+
+	@Test
+	public void testUpdate() {
+		User userResponse = new User();
+		userResponse.setFirstName("test");
+		userResponse.setLastName("user");
+		userResponse.setEmail("jelqwizardMaximus@gmail.com");
+
+		when(userDao.updateUser(Mockito.any(User.class))).thenReturn(userResponse);
+
+		User newUser = userService.updateUser(new User());
+		assertEquals(userResponse, newUser);
+	}
 }

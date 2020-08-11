@@ -52,4 +52,12 @@ public class UserClient {
 		return userController.createNewUser(user);
 	}
 
+	/**
+	 * Update user information
+	 * @param user - the user to be updated
+	 * @return - the user that has been updated
+	 */
+	public User updateUser(User user) {
+		return userController.updateUser(user);
+	}
 }

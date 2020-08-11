@@ -79,4 +79,23 @@ public class UserDAO {
 
 		return newUser;
 	}
+
+
+
+	public User updateUser(User user) {
+		Map<String,Set<?>> params = new HashMap<>();
+		params.put("firstName", Sets.newHashSet(user.getFirstName()));
+		params.put("lastName", Sets.newHashSet(user.getLastName()));
+		params.put("email", Sets.newHashSet(user.getEmail()));
+		params.put("username",Sets.newHashSet(user.getUsername()));
+		params.put("password",Sets.newHashSet(user.getPassword()));
+		params.put("userId",Sets.newHashSet(user.getUserId()));
+
+		sqlBuilder.setQueryFile("userDAO");
+		sqlBuilder.setParams(params);
+
+		post(sqlBuilder.getSql("updateUser"));
+
+		return user;
+	}
 }
