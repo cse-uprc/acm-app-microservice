@@ -1,12 +1,11 @@
 package com.acm.app.mail.client;
 
-import javax.mail.MessagingException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.acm.app.mail.client.domain.MailMessage;
 import com.acm.app.mail.rest.MailController;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.acm.app.user.client.domain.User;
 
 /**
  * Client for {@link MailController} to expose the given endpoint's to other
@@ -30,5 +29,17 @@ public class MailClient {
 	 */
 	public MailMessage sendMessage(MailMessage message) throws Exception {
 		return mailController.sendMessage(message);
+	}
+
+	/**
+	 * Client method that notify's admins when a new user is created so that the
+	 * user can be approved or not.
+	 *
+	 * @param user - The new user that was created
+	 * @return {@link MailMessage} object of the message that was sent
+	 * @throws Exception
+	 */
+	public MailMessage notifyAdminsNewUser(User user) throws Exception {
+		return mailController.notifyAdminsNewUser(user);
 	}
 }

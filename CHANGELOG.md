@@ -25,6 +25,13 @@
 ---
 ---
 
+## Release - 08/13/2020 v1.1.0
+
+   ### <ins>Changed:</ins>
+   ```diff
+   ! [sambutler1017] - How the filtering of the user is done when getting a list of users and sending an email.
+   ```
+   
 ## Release - 08/08/2020 v1.1.0
 
    ### <ins>Changed:</ins>
@@ -33,15 +40,13 @@
    + [kwinborne] - Implemented email functionality to create user
    ```
 
-
    ### <ins>Changed:</ins>
    ```diff
    + [kwinborne] - Added Github package skeleton
    + [kwinborne] - Added Application package skeleton
    + [kwinborne] - Added Calendar package skeleton
    ```
-
-
+   
 ## Release - 08/07/2020 v1.1.0
 
    ### <ins>Changed:</ins>
@@ -55,6 +60,7 @@
    ```diff
    + [kwinborne] - Create User functionality to User Controller, with test
    ```
+   
 ## Release - 08/04/2020 v1.1.0
 
    ### <ins>Added:</ins>
@@ -70,6 +76,7 @@
    + [kwinborne] - Test for AuthorizationService.
    + [kwinborne] - Tests for AuthenticationController decode method
    ```
+   
    ### <ins>Changed:</ins>
    ```diff
    ! [kwinborne] - Decode token method to Authentication Controller.

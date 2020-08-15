@@ -26,19 +26,10 @@ public class UserClient {
 	 * Returns a user from userController
 	 *
 	 * @param request - UserGetRequest to pass to userController.
+	 * @throws UserNotFoundException
 	 */
-	public List<User> getUser(UserGetRequest request) {
-		return userController.getUser(request);
-	}
-
-	/**
-	 * Returns user credentials from userController
-	 *
-	 * @param request - UserGetRequest
-	 * @return {@link User} object
-	 */
-	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException {
-		return userController.getUserCredentials(request);
+	public List<User> getUsers(UserGetRequest request) throws UserNotFoundException {
+		return userController.getUsers(request);
 	}
 
 	/**

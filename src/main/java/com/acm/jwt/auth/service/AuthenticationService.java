@@ -5,6 +5,7 @@ import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.library.globals.exceptions.InvalidPasswordException;
 import com.acm.library.service.PasswordHash;
+import com.google.common.collect.Sets;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,8 +33,8 @@ public class AuthenticationService {
      */
     public User verifyUser(String username, String password) throws Exception {
         UserGetRequest request = new UserGetRequest();
-        request.setUsername(username);
-        User requestedUser = userClient.getUserCredentials(request);
+        request.setUsername(Sets.newHashSet(username));
+        User requestedUser = userClient.getUsers(request).get(0);
         if (!PasswordHash.checkPassword(password, requestedUser.getPassword())) {
             throw new InvalidPasswordException();
         }

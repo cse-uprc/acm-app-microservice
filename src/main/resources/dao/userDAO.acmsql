@@ -14,22 +14,13 @@
 	    user_credentials uc ON u.user_id = uc.user_id
 	        INNER JOIN
 	    web_roles wr ON u.web_role_id = wr.web_role_id
-	    
-@NAME(getUserCredentials)
-	SELECT
-		uc.user_id,
-		uc.username,
-		uc.password,
-		u.first_name,
-		u.last_name
-	FROM
-	    users u
-	        INNER JOIN
-	    user_credentials uc ON u.user_id = uc.user_id
 	@WHERE(:userId:)
-		uc.user_id = :userId:
-	@WHERE(:username:)
-		uc.username = :username:
+		uc.user_id IN (:userId:)
+	@AND(:username:)
+		uc.username IN (:username:)
+	@AND(:webRole:)
+		wr.web_role_text_id IN (:webRole:)
+
 @NAME(createUser)
     INSERT INTO dim_user (first_name, last_name, email)
      VALUES(:firstName:, :lastName:, :email:)

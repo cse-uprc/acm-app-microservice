@@ -1,7 +1,5 @@
 package com.acm.app.user.rest;
 
-import com.acm.app.mail.client.MailClient;
-import com.acm.app.mail.client.domain.MailMessage;
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.service.UserService;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -31,39 +28,28 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private MailClient mailClient;
 
 	/**
 	 * Get a user profile based on the given user get request.
 	 *
 	 * @param request - requested user for lookup
 	 * @return user - gets user object from userService
+	 * @throws UserNotFoundException
 	 */
 	@GetMapping()
-	public List<User> getUser(UserGetRequest request) {
-		return userService.getUser(request);
-	}
-
-	@GetMapping("/credentials")
-	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException {
-		return userService.getUserCredentials(request);
+	public List<User> getUsers(UserGetRequest request) throws UserNotFoundException {
+		return userService.getUsers(request);
 	}
 
 	/**
-	 * Pass a create user request to the userService and emails the admins to notify them.
+	 * Pass a create user request to the userService and emails the admins to notify
+	 * them.
 	 *
 	 * @param user - the user to be created
 	 * @return user response from userService
 	 */
 	@PostMapping()
 	public User createNewUser(@RequestBody User user) throws Exception {
-		MailMessage message = new MailMessage();
-		message.setBody("New User Account Requested for: " + user.getFirstName()+" "+user.getLastName());
-		message.setSubject("ACM APP - New User Request");
-		message.setRecipients(Arrays.asList("kiyleawinborne@gmail.com","sambutler1017@icloud.com","josuemvd@gmail.com", "steven.lengel@rockets.utoledo.edu"));
-		mailClient.sendMessage(message);
-
 		return userService.createNewUser(user);
 	}
 

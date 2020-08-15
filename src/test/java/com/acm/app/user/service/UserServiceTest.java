@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import com.acm.app.mail.client.MailClient;
@@ -13,7 +11,6 @@ import com.acm.app.mail.client.domain.MailMessage;
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.dao.UserDAO;
-import com.acm.app.user.rest.UserController;
 import com.acm.library.globals.exceptions.UserNotFoundException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -30,14 +27,11 @@ public class UserServiceTest {
 	@InjectMocks
 	private UserService userService;
 
-	@InjectMocks
-	private UserController userController;
-
-	@InjectMocks
-	private UserGetRequest request;
-
 	@Mock
 	private UserDAO userDao;
+
+	@Mock
+	private MailClient mailClient;
 
 	@BeforeEach
 	public void setUp() {
@@ -45,7 +39,7 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void testGetUsers() {
+	public void testGetUsers() throws UserNotFoundException {
 		User userResponse = new User();
 		userResponse.setFirstName("Test");
 		userResponse.setLastName("Last");
@@ -53,34 +47,22 @@ public class UserServiceTest {
 		List<User> userList = new ArrayList<>();
 		userList.add(userResponse);
 
-		when(userDao.getUser(Mockito.any(UserGetRequest.class))).thenReturn(userList);
+		when(userDao.getUsers(Mockito.any(UserGetRequest.class))).thenReturn(userList);
 
-		List<User> userTest = userService.getUser(request);
+		List<User> userTest = userService.getUsers(new UserGetRequest());
 
 		assertEquals("Expect Users to be equal", userTest.get(0), userResponse);
 	}
 
 	@Test
-	public void testGetUserCredentials() throws UserNotFoundException {
-		User userResponse = new User();
-		userResponse.setUsername("testuser");
-		userResponse.setPassword("password");
-
-		when(userDao.getUserCredentials(Mockito.any(UserGetRequest.class))).thenReturn(userResponse);
-
-		User userTest = userService.getUserCredentials(new UserGetRequest());
-
-		assertEquals("Users should be equal", userTest, userResponse);
-	}
-
-	@Test
-	public void testCreateUser() {
+	public void testCreateUser() throws Exception {
 		User userResponse = new User();
 		userResponse.setFirstName("test");
 		userResponse.setLastName("user");
 		userResponse.setEmail("jelqwizardMaximus@gmail.com");
 
 		when(userDao.createNewUser(Mockito.any(User.class))).thenReturn(userResponse);
+		when(mailClient.notifyAdminsNewUser(Mockito.any(User.class))).thenReturn(new MailMessage());
 
 		User newUser = userService.createNewUser(new User());
 		assertEquals(userResponse, newUser);

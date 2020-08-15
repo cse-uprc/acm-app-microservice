@@ -2,13 +2,14 @@ package com.acm.app.user.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.acm.app.mail.client.MailClient;
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.dao.UserDAO;
 import com.acm.library.globals.exceptions.UserNotFoundException;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * UserService sends request to userDAO
@@ -22,18 +23,18 @@ public class UserService {
 	@Autowired
 	private UserDAO userDAO;
 
+	@Autowired
+	private MailClient mailClient;
+
 	/**
 	 * Service method for getting data for a user
 	 *
 	 * @param request - requested user for lookup
 	 * @return user from DAO
+	 * @throws UserNotFoundException
 	 */
-	public List<User> getUser(UserGetRequest request) {
-		return userDAO.getUser(request);
-	}
-
-	public User getUserCredentials(UserGetRequest request) throws UserNotFoundException {
-		return userDAO.getUserCredentials(request);
+	public List<User> getUsers(UserGetRequest request) throws UserNotFoundException {
+		return userDAO.getUsers(request);
 	}
 
 	/**
@@ -41,9 +42,12 @@ public class UserService {
 	 *
 	 * @param user to be created
 	 * @return user response from DAO
+	 * @throws Exception
 	 */
-	public User createNewUser(User user) {
-		return userDAO.createNewUser(user);
+	public User createNewUser(User user) throws Exception {
+		User createdUser = userDAO.createNewUser(user);
+		mailClient.notifyAdminsNewUser(createdUser);
+		return createdUser;
 	}
 
 	/**
