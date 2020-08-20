@@ -23,7 +23,6 @@ import com.acm.app.user.client.domain.User;
 @CrossOrigin
 @RestController
 @RequestMapping("api/acm/mail")
-@Controller
 public class MailController {
 
 	@Autowired
