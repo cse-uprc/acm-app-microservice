@@ -25,7 +25,7 @@ import com.google.common.collect.Sets;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Service class to send an email to a user
@@ -33,7 +33,7 @@ import org.springframework.stereotype.Component;
  * @author Sam Butler
  * @since 08/04/2020
  */
-@Component
+@Service
 public class MailService {
 
     @Autowired

@@ -2,14 +2,14 @@ package com.acm.app.user.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.acm.app.mail.client.MailClient;
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.app.user.dao.UserDAO;
 import com.acm.library.globals.exceptions.UserNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * UserService sends request to userDAO
@@ -17,7 +17,7 @@ import com.acm.library.globals.exceptions.UserNotFoundException;
  * @author Kiyle Winborne
  * @since 7/30/2020
  */
-@Component
+@Service
 public class UserService {
 
 	@Autowired

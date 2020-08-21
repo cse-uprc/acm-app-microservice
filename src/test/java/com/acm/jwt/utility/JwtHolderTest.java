@@ -1,15 +1,15 @@
-package com.acm.jwt.service;
+package com.acm.jwt.utility;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doReturn;
+
+import com.acm.app.user.client.domain.User;
+import com.acm.jwt.config.JwtTokenUtil;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.acm.app.user.client.domain.User;
-import com.acm.jwt.config.JwtTokenUtil;
 
 @SpringBootTest
 public class JwtHolderTest {

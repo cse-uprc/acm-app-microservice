@@ -16,7 +16,7 @@ import com.acm.service.sql.SQLBuilder;
 import com.google.common.collect.Sets;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /**
  * Used to manage queries about users from the database
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
  * @author Kiyle Winborne
  * @since July 27, 2020
  */
-@Component
+@Repository
 public class UserDAO {
 
 	@Autowired
@@ -77,16 +77,20 @@ public class UserDAO {
 		return newUser;
 	}
 
-
-
+	/**
+	 * Updates the user information based on the given user object.
+	 * 
+	 * @param user - the user that we are updating
+	 * @return {@link User} object of the updated user
+	 */
 	public User updateUser(User user) {
-		Map<String,Set<?>> params = new HashMap<>();
+		Map<String, Set<?>> params = new HashMap<>();
 		params.put("firstName", Sets.newHashSet(user.getFirstName()));
 		params.put("lastName", Sets.newHashSet(user.getLastName()));
 		params.put("email", Sets.newHashSet(user.getEmail()));
-		params.put("username",Sets.newHashSet(user.getUsername()));
-		params.put("password",Sets.newHashSet(user.getPassword()));
-		params.put("userId",Sets.newHashSet(user.getUserId()));
+		params.put("username", Sets.newHashSet(user.getUsername()));
+		params.put("password", Sets.newHashSet(user.getPassword()));
+		params.put("userId", Sets.newHashSet(user.getUserId()));
 
 		sqlBuilder.setQueryFile("userDAO");
 		sqlBuilder.setParams(params);

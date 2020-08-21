@@ -1,4 +1,4 @@
-package com.acm.jwt.service;
+package com.acm.jwt.utility;
 
 import javax.servlet.http.HttpServletRequest;
 

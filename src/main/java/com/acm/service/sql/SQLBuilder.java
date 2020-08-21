@@ -18,7 +18,7 @@ import com.acm.library.globals.exceptions.NullParamsException;
 import com.acm.service.activeprofile.ActiveProfile;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Used for reading and processing sql blocks of code. This file can only be
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
  * @author Sam Butler
  * @since July 25, 2020
  */
-@Component
+@Service
 public class SQLBuilder {
     private static String queryFile;
 

@@ -4,7 +4,7 @@ import static com.acm.library.globals.variables.Environments.DEV_ENV;
 import static com.acm.library.globals.variables.Environments.LOCAL_ENV;
 import static com.acm.library.globals.variables.Environments.PROD_ENV;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Used to set and get the property files and active profile for the application
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author Sam Butler
  * @since July 22, 2020
  */
-@Component
+@Service
 public class ActiveProfile {
     /**
      * Method to set the current active profile the application is running in
@@ -54,7 +54,6 @@ public class ActiveProfile {
             return System.getenv("APP_ENVIRONMENT");
         } else
             return "local";
-
     }
 
     /**

@@ -8,7 +8,7 @@ import com.acm.library.service.PasswordHash;
 import com.google.common.collect.Sets;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Authorization Service takes a user request and checks the values entered for
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author Kiyle Winborne
  * @since 8/2/2020
  */
-@Component
+@Service
 public class AuthenticationService {
     @Autowired
     private UserClient userClient;

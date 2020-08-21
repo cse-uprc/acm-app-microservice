@@ -11,10 +11,14 @@ import com.acm.service.activeprofile.ActiveProfile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Component
+/**
+ * Common SQL Service to make API calls to the database
+ * 
+ * @author Josue Van Dyke
+ * @since 8/01/2020
+ */
 @Service
 public class SqlClient {
 
