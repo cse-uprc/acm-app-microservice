@@ -1,0 +1,33 @@
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-- Script: 1.0.0.4__Create_Calendar_Table.sql
+-- Author: Sam Butler
+-- Date: 2020-08-24
+-- Issue: ACMAPP-98: Create Calendar Table
+-- Version: v1.0.0
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+-- ---------------------------------------------------------------------------------
+-- ACMAPP-98: START
+-- ---------------------------------------------------------------------------------
+
+CREATE TABLE `calendar` (
+  `calendar_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `event_name` VARCHAR(150) NOT NULL,
+  `event_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` INT UNSIGNED NOT NULL,
+  `insert_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`calendar_id`),
+  INDEX `FK_calendar__users_idx` (`created_by` ASC) VISIBLE,
+  CONSTRAINT `FK_calendar__users`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- ---------------------------------------------------------------------------------
+-- ACMAPP-98: END
+-- ---------------------------------------------------------------------------------
+
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-- END OF SCRIPT VERSION
