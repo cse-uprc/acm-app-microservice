@@ -1,0 +1,85 @@
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-- Script: 1.0.0.5__Create_Tables_For_Classroom_App.acmsql
+-- Author: Sam Butler
+-- Date: 2020-08-25
+-- Issue: ACMAPP-147: Create Tables needed for Classroom to be in place
+-- Version: v1.0.0
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+-- ---------------------------------------------------------------------------------
+-- ACMAPP-147: START
+-- ---------------------------------------------------------------------------------
+
+-- Create class Table
+--
+CREATE TABLE `class` (
+  `class_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `occupant_count` INT UNSIGNED NOT NULL,
+  `room_location` VARCHAR(45) NOT NULL,
+  `insert_user_id` INT UNSIGNED NOT NULL,
+  `insert_date_utc` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`class_id`),
+  INDEX `FK_class__users_idx` (`insert_user_id` ASC),
+  CONSTRAINT `FK_class__users`
+    FOREIGN KEY (`insert_user_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- Create class_session Table
+--
+CREATE TABLE `class_session` (
+  `class_id` INT UNSIGNED NOT NULL,
+  `start_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `end_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX `FK_class_session__class_idx` (`class_id` ASC),
+  CONSTRAINT `FK_class_session__class`
+    FOREIGN KEY (`class_id`)
+    REFERENCES `class` (`class_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- Create class_instructors Table
+--
+CREATE TABLE `class_instructors` (
+  `class_id` INT UNSIGNED NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  INDEX `FK_class_instructors__class_idx` (`class_id` ASC),
+  CONSTRAINT `FK_class_instructors__class`
+    FOREIGN KEY (`class_id`)
+    REFERENCES `class` (`class_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- Create class_events Table
+--
+CREATE TABLE `class_events` (
+  `class_id` INT UNSIGNED NOT NULL,
+  `event_type` VARCHAR(45) NOT NULL DEFAULT 'NOTE',
+  `event_name` VARCHAR(45) NOT NULL,
+  `event_description` VARCHAR(200) NOT NULL,
+  `event_due_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `insert_user_id` INT UNSIGNED NOT NULL,
+  `insert_date_utc` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX `FK_class_events__class_idx` (`class_id` ASC),
+  INDEX `FK_class_events__users_idx` (`insert_user_id` ASC),
+  CONSTRAINT `FK_class_events__class`
+    FOREIGN KEY (`class_id`)
+    REFERENCES `class` (`class_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_class_events__users`
+    FOREIGN KEY (`insert_user_id`)
+    REFERENCES `users` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- ---------------------------------------------------------------------------------
+-- ACMAPP-147: END
+-- ---------------------------------------------------------------------------------
+
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-- END OF SCRIPT VERSION
