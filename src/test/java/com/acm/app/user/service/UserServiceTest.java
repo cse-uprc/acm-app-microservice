@@ -1,7 +1,9 @@
 package com.acm.app.user.service;
 
+import static com.acm.app.user.testData.UserTestFactory.defaultUser;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -35,14 +36,12 @@ public class UserServiceTest {
 
 	@BeforeEach
 	public void setUp() {
-		MockitoAnnotations.initMocks(this);
+		initMocks(this);
 	}
 
 	@Test
 	public void testGetUsers() throws UserNotFoundException {
-		User userResponse = new User();
-		userResponse.setFirstName("Test");
-		userResponse.setLastName("Last");
+		User userResponse = defaultUser();
 
 		List<User> userList = new ArrayList<>();
 		userList.add(userResponse);
@@ -56,10 +55,7 @@ public class UserServiceTest {
 
 	@Test
 	public void testCreateUser() throws Exception {
-		User userResponse = new User();
-		userResponse.setFirstName("test");
-		userResponse.setLastName("user");
-		userResponse.setEmail("jelqwizardMaximus@gmail.com");
+		User userResponse = defaultUser();
 
 		when(userDao.createNewUser(Mockito.any(User.class))).thenReturn(userResponse);
 		when(mailClient.notifyAdminsNewUser(Mockito.any(User.class))).thenReturn(new MailMessage());
@@ -70,10 +66,7 @@ public class UserServiceTest {
 
 	@Test
 	public void testUpdate() {
-		User userResponse = new User();
-		userResponse.setFirstName("test");
-		userResponse.setLastName("user");
-		userResponse.setEmail("jelqwizardMaximus@gmail.com");
+		User userResponse = defaultUser();
 
 		when(userDao.updateUser(Mockito.any(User.class))).thenReturn(userResponse);
 

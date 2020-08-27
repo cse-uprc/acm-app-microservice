@@ -1,0 +1,11 @@
+@NAME(createClassroom)
+    INSERT INTO `class` (name,campus_text_id,room_id,insert_user_id)
+    VALUES(:name:, :campusType:, :roomId:, :insertUserId:);
+
+@NAME(createClassroomInstructor)
+    INSERT INTO `class_instructors` (class_id, first_name, last_name)
+    VALUES(:classId:, :firstName:, :lastName:);
+
+@NAME(createClassroomSession)
+    INSERT INTO `class_session` (class_id, start_time, end_time, meeting_days)
+    VALUES(:classId:, :startTime:, :endTime:, :days:);

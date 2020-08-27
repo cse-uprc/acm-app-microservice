@@ -1,18 +1,18 @@
 package com.acm.app.user.dao;
 
 import static com.acm.app.user.mapper.UserMapper.USER_MAPPER;
-import static com.acm.service.sql.SqlClient.getPage;
-import static com.acm.service.sql.SqlClient.post;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import com.acm.app.user.client.domain.User;
 import com.acm.app.user.client.domain.request.UserGetRequest;
 import com.acm.library.globals.exceptions.UserNotFoundException;
 import com.acm.service.sql.SQLBuilder;
+import com.acm.service.sql.SqlClient;
 import com.google.common.collect.Sets;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,9 @@ public class UserDAO {
 
 	@Autowired
 	private SQLBuilder sqlBuilder;
+
+	@Autowired
+	private SqlClient sqlClient;
 
 	/**
 	 * Pull user information based on user get request
@@ -53,7 +56,7 @@ public class UserDAO {
 			params.put("webRole", request.getWebRole());
 		}
 
-		return getPage(sqlBuilder.getSql("getUsers"), USER_MAPPER);
+		return sqlClient.getPage(sqlBuilder.getSql("getUsers"), USER_MAPPER);
 	}
 
 	/**
@@ -72,8 +75,9 @@ public class UserDAO {
 		sqlBuilder.setQueryFile("userDAO");
 		sqlBuilder.setParams(params);
 
-		post(sqlBuilder.getSql("createUser"));
+		Optional<Integer> id = sqlClient.post(sqlBuilder.getSql("createUser"));
 
+		id.ifPresent(value -> newUser.setUserId(value));
 		return newUser;
 	}
 
@@ -95,7 +99,7 @@ public class UserDAO {
 		sqlBuilder.setQueryFile("userDAO");
 		sqlBuilder.setParams(params);
 
-		post(sqlBuilder.getSql("updateUser"));
+		sqlClient.post(sqlBuilder.getSql("updateUser"));
 
 		return user;
 	}
