@@ -12,11 +12,11 @@
 -- ---------------------------------------------------------------------------------
 
 CREATE TABLE github (
-	git_id int NOT NULL,
-    repo_url VARCHAR(256),
-    insert_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+	git_id      INT          UNSIGNED NOT NULL AUTO_INCREMENT,
+    repo_url    VARCHAR(256) NOT NULL,
+    insert_date DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(git_id)
-);
+)ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------------------
 -- ACMAPP-99: END

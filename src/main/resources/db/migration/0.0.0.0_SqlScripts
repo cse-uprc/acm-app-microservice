@@ -1,0 +1,5 @@
+-- This will run all of the scripts in the migration folder
+--
+-- Later improvement will be to only execute the scripts based off of the current version
+--
+for %S in (*.sql) do mysql --host=104.198.225.18 --user=root --password=lotuser development < %S

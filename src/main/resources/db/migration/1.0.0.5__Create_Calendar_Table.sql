@@ -11,19 +11,29 @@
 -- ACMAPP-98: START
 -- ---------------------------------------------------------------------------------
 
-CREATE TABLE `calendar` (
-  `calendar_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `event_name` VARCHAR(150) NOT NULL,
-  `event_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` INT UNSIGNED NOT NULL,
-  `insert_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`calendar_id`),
-  INDEX `FK_calendar__users_idx` (`created_by` ASC) VISIBLE,
-  CONSTRAINT `FK_calendar__users`
-    FOREIGN KEY (`created_by`)
-    REFERENCES `users` (`user_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+--
+-- TABLE: calendar
+--
+CREATE TABLE calendar (
+  calendar_id     INT          UNSIGNED NOT NULL AUTO_INCREMENT,
+  event_name      VARCHAR(150) NOT NULL,
+  event_date      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  insert_user_id      INT UNSIGNED NOT NULL,
+  insert_date_utc DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (calendar_id)
+)ENGINE=InnoDB;
+
+--
+-- INDEX: calendar__users_IDX1
+--
+CREATE INDEX calendar__users_IDX1 ON calendar(insert_user_id);
+
+--
+-- FOREIGN KEY: calendar__users_FK1
+--
+ALTER TABLE calendar ADD CONSTRAINT calendar__users_FK1
+    FOREIGN KEY (insert_user_id)
+    REFERENCES users (user_id);
 
 -- ---------------------------------------------------------------------------------
 -- ACMAPP-98: END
