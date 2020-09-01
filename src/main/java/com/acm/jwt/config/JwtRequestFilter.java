@@ -52,10 +52,13 @@ public class JwtRequestFilter implements Filter {
             if (requestTokenHeader != null) {
                 throw new IOException("JWT Token does not begin with Bearer");
             } else {
+                System.out.println(request.getRequestURI());
                 if (!EXTERNAL_ENDPOINTS.contains(request.getRequestURI())) {
                     throw new IOException("Missing JWT token");
                 } else {
-                    if (request.getRequestURI().contains("/api/acm/users") && !request.getMethod().equals("POST")) {
+                    System.out.println(request.getMethod());
+                    if (request.getRequestURI().contains("/api/acm/users") && !request.getMethod().equals("POST")
+                            && !request.getMethod().equals("OPTIONS")) {
                         throw new IOException("Missing JWT token");
                     }
                 }

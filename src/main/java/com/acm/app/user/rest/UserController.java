@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Kiyle Winborne
  * @since 7/30/2020
  */
-@CrossOrigin
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("api/acm/users")
 public class UserController {
