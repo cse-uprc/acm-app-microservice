@@ -1,4 +1,4 @@
-package com.acm.service.exceptionhandler.domain;
+package com.acm.service.exceptionHandler.domain;
 
 import java.util.Date;
 

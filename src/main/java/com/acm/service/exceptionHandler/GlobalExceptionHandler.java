@@ -1,10 +1,10 @@
-package com.acm.service.exceptionhandler;
+package com.acm.service.exceptionHandler;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 import java.util.Date;
 
-import com.acm.service.exceptionhandler.domain.ErrorResponse;
+import com.acm.service.exceptionHandler.domain.ErrorResponse;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

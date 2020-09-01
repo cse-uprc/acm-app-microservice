@@ -25,7 +25,7 @@ public class JwtRequestFilter implements Filter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    private static final String SERVICE_REFRESH = "/service/refresh";
+    private static final String REFRESH = "/service/refresh";
     private static final String AUTHENTICATION = "/authenticate";
 
     @Override
@@ -49,12 +49,12 @@ public class JwtRequestFilter implements Filter {
             if (requestTokenHeader != null) {
                 throw new IOException("JWT Token does not begin with Bearer");
             } else {
-                if (!request.getRequestURI().contains(AUTHENTICATION))
+                if (!request.getRequestURI().contains(AUTHENTICATION) && !request.getRequestURI().contains(REFRESH))
                     throw new IOException("Missing JWT token");
             }
         }
 
-        if (!request.getRequestURI().contains(SERVICE_REFRESH)) {
+        if (!request.getRequestURI().contains(REFRESH)) {
             chain.doFilter(request, response);
         }
     }
