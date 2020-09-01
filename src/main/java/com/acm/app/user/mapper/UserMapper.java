@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import com.acm.app.user.client.domain.User;
 import com.acm.library.globals.enums.WebRole;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserMapper implements RowMapper<User> {
-    @Autowired
     public final static UserMapper USER_MAPPER = new UserMapper();
 
     /**

@@ -1,6 +1,8 @@
 package com.acm.jwt.config;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -26,7 +28,8 @@ public class JwtRequestFilter implements Filter {
     private JwtTokenUtil jwtTokenUtil;
 
     private static final String REFRESH = "/service/refresh";
-    private static final String AUTHENTICATION = "/authenticate";
+    private static final List<String> EXTERNAL_ENDPOINTS = Arrays.asList("/service/refresh", "/authenticate",
+            "/api/acm/users");
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
@@ -49,8 +52,13 @@ public class JwtRequestFilter implements Filter {
             if (requestTokenHeader != null) {
                 throw new IOException("JWT Token does not begin with Bearer");
             } else {
-                if (!request.getRequestURI().contains(AUTHENTICATION) && !request.getRequestURI().contains(REFRESH))
+                if (!EXTERNAL_ENDPOINTS.contains(request.getRequestURI())) {
                     throw new IOException("Missing JWT token");
+                } else {
+                    if (request.getRequestURI().contains("/api/acm/users") && !request.getMethod().equals("POST")) {
+                        throw new IOException("Missing JWT token");
+                    }
+                }
             }
         }
 
