@@ -4,8 +4,6 @@ import java.util.Set;
 
 import com.acm.library.globals.enums.WebRole;
 
-import io.swagger.annotations.ApiModelProperty;
-
 /**
  * This class handles lookups passed to the DAO.
  *
@@ -14,13 +12,8 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class UserGetRequest {
 
-    @ApiModelProperty("Ids of users to filter on.")
     private Set<Integer> userId;
-
-    @ApiModelProperty("Usernames to filter on.")
     private Set<String> username;
-
-    @ApiModelProperty("Web Roles of a user to filter on.")
     private Set<WebRole> webRole;
 
     public Set<Integer> getUserId() {

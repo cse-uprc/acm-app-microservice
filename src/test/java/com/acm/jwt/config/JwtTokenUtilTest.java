@@ -76,15 +76,6 @@ public class JwtTokenUtilTest {
 	}
 
 	@Test
-	public void testIsValidToken() {
-		String tokenValid = jwtTokenUtil.generateToken(user);
-		String tokenInvalid = "flkasdjfisdngoiawng1232124nslingsidga.eqwkrnqoingfewi";
-
-		assertFalse("Token is Invalid", jwtTokenUtil.isValidToken(tokenInvalid));
-		assertTrue("Token is Valid", jwtTokenUtil.isValidToken(tokenValid));
-	}
-
-	@Test
 	void testTokenDecode() {
 		User testUser = new User();
 		testUser.setUsername("test");

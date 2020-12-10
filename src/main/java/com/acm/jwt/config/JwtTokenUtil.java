@@ -25,28 +25,66 @@ public class JwtTokenUtil implements Serializable {
 
     private final String secret = "acmmicroservice";
 
+    /**
+     * Pulls the username (Subject Field) from the token
+     * 
+     * @param token - The token being inspected
+     * @return String of the subject field
+     */
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
+    /**
+     * Pulls the expiration date from a given token
+     * 
+     * @param token - The token being inspected
+     * @return A Date object
+     */
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
 
+    /**
+     * Get Specfic claims from a token based on the passed in resolver
+     * 
+     * @param <T>            - Object type
+     * @param token          - Token to be inspected
+     * @param claimsResolver - Claims resolver
+     * @return The generic type passed in of the claims
+     */
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
 
+    /**
+     * Pulls all the claims off of a given token
+     * 
+     * @param token - The token to inspect and pull the claims from
+     * @return Claims object is returned
+     */
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
+    /**
+     * Checks if the given token is expired
+     * 
+     * @param token - Token to pull the expiration date from
+     * @return Returns a boolean object of true, false, or null
+     */
     public Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
+    /**
+     * Sets up the fields to be added to the token
+     * 
+     * @param user - User info to be added to the token
+     * @return String of the new JWT token
+     */
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", user.getUsername());
@@ -57,19 +95,17 @@ public class JwtTokenUtil implements Serializable {
         return doGenerateToken(claims, user.getUsername());
     }
 
+    /**
+     * Generate a token based on the given Claims and subject
+     * 
+     * @param claims  - The claims/fields to be added to the token
+     * @param subject - The main subject to be added to the field
+     * @return String of the generated JWT token
+     */
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
-    }
-
-    public boolean isValidToken(String token) {
-        try {
-            return !isTokenExpired(token);
-        } catch (Exception e) {
-            // Catch invalid token and return false
-            return false;
-        }
     }
 
     /**

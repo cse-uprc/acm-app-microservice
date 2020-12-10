@@ -5,21 +5,12 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import io.swagger.annotations.ApiModelProperty;
-
 @JsonInclude(Include.NON_NULL)
 public class Session {
 
-    @ApiModelProperty("Associated Class Identifier")
     private int classId;
-
-    @ApiModelProperty("When the class starts")
     private String startTime;
-
-    @ApiModelProperty("When the class ends.")
     private String endTime;
-
-    @ApiModelProperty("Days of the week the class meets.")
     private Set<Days> meetingDays;
 
     public int getClassId() {

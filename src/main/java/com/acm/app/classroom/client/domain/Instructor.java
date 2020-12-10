@@ -3,8 +3,6 @@ package com.acm.app.classroom.client.domain;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import io.swagger.annotations.ApiModelProperty;
-
 /**
  * Instructor object
  *
@@ -14,13 +12,8 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonInclude(Include.NON_NULL)
 public class Instructor {
 
-    @ApiModelProperty("Associated Class Identifier")
     private int classId;
-
-    @ApiModelProperty("First name of the user.")
     private String firstName;
-
-    @ApiModelProperty("Last name of the user.")
     private String lastName;
 
     public int getClassId() {

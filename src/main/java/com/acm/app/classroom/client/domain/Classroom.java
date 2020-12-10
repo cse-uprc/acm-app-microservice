@@ -5,8 +5,6 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import io.swagger.annotations.ApiModelProperty;
-
 /**
  * Classroom object
  *
@@ -16,31 +14,14 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonInclude(Include.NON_NULL)
 public class Classroom {
 
-    @ApiModelProperty("Unique Identifier for the classroom.")
     private int id;
-
-    @ApiModelProperty("Name of the class.")
     private String name;
-
-    @ApiModelProperty("How many people are in the class.")
     private int occupantCount;
-
-    @ApiModelProperty("What campus the class is on.")
     private Campus campusType;
-
-    @ApiModelProperty("What the room number of the class is.")
     private int roomId;
-
-    @ApiModelProperty("Who created the classroom.")
     private int insertUserId;
-
-    @ApiModelProperty("When the classroom was created.")
     private Date insertDate;
-
-    @ApiModelProperty("User information of the instructor.")
     private Instructor instructor;
-
-    @ApiModelProperty("Time the class takes place")
     private Session session;
 
     public int getId() {
