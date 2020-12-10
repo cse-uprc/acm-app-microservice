@@ -37,6 +37,9 @@ public class JwtRequestFilter implements Filter {
 
         if (JWTValidator.isVoidEndpoint(request.getRequestURI(), request.getMethod())) {
             LOGGER.info("Request is a void endpoint. No Token needed.");
+            if (!JWTValidator.isClientRefresh(request)) {
+                chain.doFilter(request, response);
+            }
         } else {
             JWTValidator.isValidJwt(request);
             chain.doFilter(request, response);
