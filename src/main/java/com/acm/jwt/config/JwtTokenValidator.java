@@ -94,7 +94,7 @@ public class JwtTokenValidator {
      */
     private void confirmTokenFields(String token) throws IOException {
         try {
-            jwtTokenUtil.getUsernameFromToken(token);
+            jwtTokenUtil.getUserIdFromToken(token);
             jwtTokenUtil.getExpirationDateFromToken(token);
             jwtTokenUtil.isTokenExpired(token);
         } catch (Exception e) {

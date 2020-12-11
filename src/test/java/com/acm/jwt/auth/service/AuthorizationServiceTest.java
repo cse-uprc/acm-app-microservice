@@ -23,6 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class AuthorizationServiceTest {
     @InjectMocks
     AuthenticationService auth;
+
     @Mock
     UserClient userClient;
 

@@ -27,7 +27,7 @@ public class JwtHolder {
 	 */
 	public int getRequiredUserId() {
 		try {
-			return Integer.parseInt(jwtParser.parseClaimsJws(getToken()).getBody().get("userId").toString());
+			return Integer.parseInt(jwtParser.parseClaimsJws(getToken()).getBody().get("sub").toString());
 		} catch (Exception e) {
 			System.out.println("Invalid Token");
 			return -1;
@@ -42,7 +42,7 @@ public class JwtHolder {
 	 */
 	public int getRequiredUserId(String token) {
 		try {
-			return Integer.parseInt(jwtParser.parseClaimsJws(token).getBody().get("userId").toString());
+			return Integer.parseInt(jwtParser.parseClaimsJws(token).getBody().get("sub").toString());
 		} catch (Exception e) {
 			System.out.println("Invalid Token");
 			return -1;

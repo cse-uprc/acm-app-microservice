@@ -69,6 +69,35 @@ public class ActiveProfile {
             return DEV_ENV;
         else
             return LOCAL_ENV;
+    }
 
+    /**
+     * Get the path of the environment url web path
+     * 
+     * @return String of the web url path
+     */
+    public String getWebUrl() {
+        String profile = System.getProperty("spring.profiles.active");
+        if (profile != null && profile.equals("production"))
+            return "https://acm-web.herokuapp.com";
+        else if (profile != null && profile.equals("development"))
+            return "https://acm-ui-dev.herokuapp.com";
+        else
+            return "localhost:8080";
+    }
+
+    /**
+     * Get the path of the environment url microservice path
+     * 
+     * @return String of the microservice url path
+     */
+    public String getMicroserviceUrl() {
+        String profile = System.getProperty("spring.profiles.active");
+        if (profile != null && profile.equals("production"))
+            return "acm-microservice-prod.herokuapp.com";
+        else if (profile != null && profile.equals("development"))
+            return "acm-microservice-dev.herokuapp.com";
+        else
+            return "localhost:8080.com";
     }
 }

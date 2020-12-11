@@ -6,14 +6,18 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 
 import java.util.Date;
 
 import com.acm.app.user.client.domain.User;
+import com.acm.service.activeprofile.ActiveProfile;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,32 +30,30 @@ import io.jsonwebtoken.MalformedJwtException;
 public class JwtTokenUtilTest {
 
 	@Spy
+	@InjectMocks
 	private JwtTokenUtil jwtTokenUtil;
+
+	@Mock
+	private ActiveProfile activeProfile;
 
 	private final User user = new User();
 
 	@BeforeEach
 	public void setUpTests() {
-		MockitoAnnotations.initMocks(this);
 		user.setUserId(1);
 		user.setFirstName("Test");
 		user.setLastName("User");
 		user.setUsername("TestUser123");
 		user.setPassword("password");
+
+		when(activeProfile.getWebUrl()).thenReturn("test");
+		when(activeProfile.getMicroserviceUrl()).thenReturn("test");
 	}
 
 	@Test
 	public void testCreateJwtToken() {
 		String token = jwtTokenUtil.generateToken(user);
 		assertNotNull("Valid Token", token);
-	}
-
-	@Test
-	public void testGetUsernameFromToken() {
-		String token = jwtTokenUtil.generateToken(user);
-		String username = jwtTokenUtil.getUsernameFromToken(token);
-
-		assertEquals("Valid Token", username, user.getUsername());
 	}
 
 	@Test
@@ -85,7 +87,7 @@ public class JwtTokenUtilTest {
 
 		Claims testToken = jwtTokenUtil.decodeToken(token);
 
-		Assertions.assertEquals(jwtTokenUtil.getUsernameFromToken(token), testToken.get("username"));
+		Assertions.assertEquals(jwtTokenUtil.getUserIdFromToken(token), testToken.get("sub"));
 
 	}
 

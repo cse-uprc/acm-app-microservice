@@ -2,20 +2,29 @@ package com.acm.jwt.utility;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 
 import com.acm.app.user.client.domain.User;
 import com.acm.jwt.config.JwtTokenUtil;
+import com.acm.service.activeprofile.ActiveProfile;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class JwtHolderTest {
-
 	@Spy
 	private JwtHolder jwtHolder;
+
+	@InjectMocks
+	private JwtTokenUtil jwtUtil;
+
+	@Mock
+	private ActiveProfile activeProfile;
 
 	private User user;
 
@@ -27,12 +36,14 @@ public class JwtHolderTest {
 		user.setUserId(1);
 		user.setUsername("TestUser");
 		user.setPassword("password");
+
+		when(activeProfile.getWebUrl()).thenReturn("test");
+		when(activeProfile.getMicroserviceUrl()).thenReturn("test");
 	}
 
 	@Test
 	public void testGetRequiredUserIdNoParams() {
-		JwtTokenUtil tokenGenerator = new JwtTokenUtil();
-		String token = tokenGenerator.generateToken(user);
+		String token = jwtUtil.generateToken(user);
 
 		doReturn(token).when(jwtHolder).getToken();
 
@@ -43,9 +54,7 @@ public class JwtHolderTest {
 
 	@Test
 	public void testGetRequiredUserIdWithParams() {
-		JwtTokenUtil tokenGenerator = new JwtTokenUtil();
-
-		String tokenValid = tokenGenerator.generateToken(user);
+		String tokenValid = jwtUtil.generateToken(user);
 		String tokenInvalid = "alkfhavniqon1234221inf";
 
 		int userIdValid = jwtHolder.getRequiredUserId(tokenValid);
@@ -57,8 +66,7 @@ public class JwtHolderTest {
 
 	@Test
 	public void testGetRequiredUsernameNoParams() {
-		JwtTokenUtil tokenGenerator = new JwtTokenUtil();
-		String token = tokenGenerator.generateToken(user);
+		String token = jwtUtil.generateToken(user);
 
 		doReturn(token).when(jwtHolder).getToken();
 
@@ -69,9 +77,7 @@ public class JwtHolderTest {
 
 	@Test
 	public void testGetRequiredUsernameWithParams() {
-		JwtTokenUtil tokenGenerator = new JwtTokenUtil();
-
-		String tokenValid = tokenGenerator.generateToken(user);
+		String tokenValid = jwtUtil.generateToken(user);
 		String tokenInvalid = "alkfhavniqon1234221inf";
 
 		String usernameValid = jwtHolder.getRequiredUsername(tokenValid);

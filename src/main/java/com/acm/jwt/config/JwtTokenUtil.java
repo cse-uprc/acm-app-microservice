@@ -1,6 +1,7 @@
 package com.acm.jwt.config;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,9 @@ import java.util.function.Function;
 import javax.xml.bind.DatatypeConverter;
 
 import com.acm.app.user.client.domain.User;
+import com.acm.service.activeprofile.ActiveProfile;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -25,13 +28,16 @@ public class JwtTokenUtil implements Serializable {
 
     private final String secret = "acmmicroservice";
 
+    @Autowired
+    private ActiveProfile activeProfile;
+
     /**
      * Pulls the username (Subject Field) from the token
      * 
      * @param token - The token being inspected
      * @return String of the subject field
      */
-    public String getUsernameFromToken(String token) {
+    public String getUserIdFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
@@ -88,11 +94,15 @@ public class JwtTokenUtil implements Serializable {
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", user.getUsername());
-        claims.put("password", user.getPassword());
-        claims.put("userId", user.getUserId());
         claims.put("firstName", user.getFirstName());
         claims.put("lastName", user.getLastName());
-        return doGenerateToken(claims, user.getUsername());
+        claims.put("email", user.getEmail());
+        claims.put("webRole", user.getWebRole());
+        claims.put("web", activeProfile.getWebUrl());
+        claims.put("auth", activeProfile.getMicroserviceUrl());
+        claims.put("apps", Arrays.asList("people", "classroom"));
+        claims.put("schoolId", 1);
+        return doGenerateToken(claims, Integer.toString(user.getUserId()));
     }
 
     /**
