@@ -27,6 +27,10 @@ public class JwtGlobals {
 
             // Authentication Endpoint
             put("/authenticate", Arrays.asList("ANY"));
+
+            // Websocket endpoints
+            put("/api/web-notification-app/websocket", Arrays.asList("ANY"));
+            put("/api/web-notification-app/notifications", Arrays.asList("ANY"));
         }
     };
 
