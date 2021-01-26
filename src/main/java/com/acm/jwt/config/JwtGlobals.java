@@ -20,7 +20,7 @@ public class JwtGlobals {
         private static final long serialVersionUID = 1L;
         {
             // Create User Endpoint
-            put("/api/acm/users", Arrays.asList("POST", "OPTIONS"));
+            put("/api/acm/users/dim-user", Arrays.asList("POST", "OPTIONS"));
 
             // Client Refresh
             put("/service/refresh", Arrays.asList("ANY"));
