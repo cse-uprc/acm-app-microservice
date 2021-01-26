@@ -12,16 +12,16 @@ import com.acm.library.globals.enums.WebRole;
  */
 public class UserGetRequest {
 
-    private Set<Integer> userId;
+    private Set<Integer> id;
     private Set<String> username;
     private Set<WebRole> webRole;
 
-    public Set<Integer> getUserId() {
-        return userId;
+    public Set<Integer> getId() {
+        return id;
     }
 
-    public void setUserId(Set<Integer> userId) {
-        this.userId = userId;
+    public void setUserId(Set<Integer> id) {
+        this.id = id;
     }
 
     public Set<String> getUsername() {
@@ -38,5 +38,9 @@ public class UserGetRequest {
 
     public void setWebRole(Set<WebRole> webRole) {
         this.webRole = webRole;
+    }
+
+    public void setId(Set<Integer> id) {
+        this.id = id;
     }
 }

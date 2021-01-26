@@ -54,13 +54,13 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void testCreateUser() throws Exception {
+	public void testCreateDimUser() throws Exception {
 		User userResponse = defaultUser();
 
-		when(userDao.createNewUser(Mockito.any(User.class))).thenReturn(userResponse);
+		when(userDao.createDimUser(Mockito.any(User.class))).thenReturn(userResponse);
 		when(mailClient.notifyAdminsNewUser(Mockito.any(User.class))).thenReturn(new MailMessage());
 
-		User newUser = userService.createNewUser(new User());
+		User newUser = userService.createDimUser(new User());
 		assertEquals(userResponse, newUser);
 	}
 

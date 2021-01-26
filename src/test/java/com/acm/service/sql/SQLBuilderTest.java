@@ -1,4 +1,4 @@
-package com.acm.sql;
+package com.acm.service.sql;
 
 import static com.acm.library.globals.variables.Environments.TEST_ENV;
 import static org.junit.Assert.assertEquals;
@@ -11,7 +11,6 @@ import java.util.Set;
 
 import com.acm.library.globals.exceptions.InvalidParamValueException;
 import com.acm.service.activeprofile.ActiveProfile;
-import com.acm.service.sql.SQLBuilder;
 import com.google.common.collect.Sets;
 
 import org.junit.Rule;

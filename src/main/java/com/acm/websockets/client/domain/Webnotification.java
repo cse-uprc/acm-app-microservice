@@ -14,7 +14,7 @@ public class Webnotification<T> {
     private T message;
     private WebnotificationType type;
 
-    public Integer getUserId() {
+    public Integer getId() {
         return userId;
     }
 

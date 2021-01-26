@@ -100,7 +100,6 @@ public class MailService {
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp-mail.outlook.com");
         props.put("mail.smtp.port", "587");
-        props.setProperty("mail.debug", "true");
 
         return props;
     }

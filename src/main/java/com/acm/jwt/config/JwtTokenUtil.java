@@ -26,7 +26,7 @@ public class JwtTokenUtil implements Serializable {
 
     public static final long JWT_TOKEN_VALIDITY = 18000000;
 
-    private final String secret = "acmmicroservice";
+    private final String secret = "CA024AFFB510011EB554F04721BFB4279D11B06A";
 
     @Autowired
     private ActiveProfile activeProfile;
@@ -37,7 +37,7 @@ public class JwtTokenUtil implements Serializable {
      * @param token - The token being inspected
      * @return String of the subject field
      */
-    public String getUserIdFromToken(String token) {
+    public String getIdFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
@@ -93,6 +93,7 @@ public class JwtTokenUtil implements Serializable {
      */
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", user.getId());
         claims.put("username", user.getUsername());
         claims.put("firstName", user.getFirstName());
         claims.put("lastName", user.getLastName());
@@ -102,7 +103,7 @@ public class JwtTokenUtil implements Serializable {
         claims.put("auth", activeProfile.getMicroserviceUrl());
         claims.put("apps", Arrays.asList("people", "classroom"));
         claims.put("schoolId", 1);
-        return doGenerateToken(claims, Integer.toString(user.getUserId()));
+        return doGenerateToken(claims);
     }
 
     /**
@@ -112,8 +113,8 @@ public class JwtTokenUtil implements Serializable {
      * @param subject - The main subject to be added to the field
      * @return String of the generated JWT token
      */
-    private String doGenerateToken(Map<String, Object> claims, String subject) {
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+    private String doGenerateToken(Map<String, Object> claims) {
+        return Jwts.builder().setClaims(claims).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
@@ -125,7 +126,6 @@ public class JwtTokenUtil implements Serializable {
      * @return the decoded token
      */
     public Claims decodeToken(String token) {
-        return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary("acmmicroservice")).parseClaimsJws(token)
-                .getBody();
+        return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secret)).parseClaimsJws(token).getBody();
     }
 }

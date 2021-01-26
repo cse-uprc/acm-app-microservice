@@ -1,10 +1,10 @@
-package com.acm.jwt.auth.controller;
+package com.acm.service.auth.controller;
 
 import com.acm.app.user.client.domain.User;
-import com.acm.jwt.auth.service.AuthenticationService;
 import com.acm.jwt.config.JwtTokenUtil;
 import com.acm.jwt.model.JwtRequest;
 import com.acm.jwt.model.JwtResponse;
+import com.acm.service.auth.service.AuthenticationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

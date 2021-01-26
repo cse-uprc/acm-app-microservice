@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class User {
 
-    private int userId;
+    private int id;
     private String email;
     private String firstName;
     private String lastName;
@@ -16,12 +16,12 @@ public class User {
     private int active;
     private WebRole webRole;
 
-    public int getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {

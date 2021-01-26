@@ -1,4 +1,4 @@
-package com.acm.jwt.auth.service;
+package com.acm.service.auth.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;

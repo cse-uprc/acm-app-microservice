@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
@@ -13,12 +14,10 @@ import java.util.Date;
 import com.acm.app.user.client.domain.User;
 import com.acm.service.activeprofile.ActiveProfile;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -40,7 +39,7 @@ public class JwtTokenUtilTest {
 
 	@BeforeEach
 	public void setUpTests() {
-		user.setUserId(1);
+		user.setId(1);
 		user.setFirstName("Test");
 		user.setLastName("User");
 		user.setUsername("TestUser123");
@@ -81,19 +80,19 @@ public class JwtTokenUtilTest {
 	void testTokenDecode() {
 		User testUser = new User();
 		testUser.setUsername("test");
-		testUser.setUserId(1);
+		testUser.setId(1);
 		testUser.setPassword("password");
 		String token = jwtTokenUtil.generateToken(testUser);
 
 		Claims testToken = jwtTokenUtil.decodeToken(token);
 
-		Assertions.assertEquals(jwtTokenUtil.getUserIdFromToken(token), testToken.get("sub"));
+		assertEquals(1, testToken.get("userId"));
 
 	}
 
 	@Test
 	void testBrokenTokenDecode() throws MalformedJwtException {
-		Assertions.assertThrows(MalformedJwtException.class, () -> {
+		assertThrows(MalformedJwtException.class, () -> {
 			String notAToken = "jfkldsjfklasd";
 			Claims brokenToken = jwtTokenUtil.decodeToken(notAToken);
 		});

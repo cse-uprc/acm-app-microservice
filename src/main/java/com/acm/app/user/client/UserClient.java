@@ -39,12 +39,13 @@ public class UserClient {
 	 * @return a response from the userController
 	 */
 
-	public User createNewUser(User user) throws Exception {
-		return userController.createNewUser(user);
+	public User createDimUser(User user) throws Exception {
+		return userController.createDimUser(user);
 	}
 
 	/**
 	 * Update user information
+	 * 
 	 * @param user - the user to be updated
 	 * @return - the user that has been updated
 	 */

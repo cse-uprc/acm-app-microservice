@@ -1,5 +1,8 @@
 package com.acm.jwt.config;
 
+import static com.acm.jwt.config.JwtGlobals.REFRESH;
+import static com.acm.jwt.config.JwtGlobals.VOID_ENDPOINTS;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import static com.acm.jwt.config.JwtGlobals.*;
 
 /**
  * JWT token validator class
@@ -94,7 +95,7 @@ public class JwtTokenValidator {
      */
     private void confirmTokenFields(String token) throws IOException {
         try {
-            jwtTokenUtil.getUserIdFromToken(token);
+            jwtTokenUtil.getIdFromToken(token);
             jwtTokenUtil.getExpirationDateFromToken(token);
             jwtTokenUtil.isTokenExpired(token);
         } catch (Exception e) {

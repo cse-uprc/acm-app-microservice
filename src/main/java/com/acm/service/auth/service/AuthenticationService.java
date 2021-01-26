@@ -1,4 +1,4 @@
-package com.acm.jwt.auth.service;
+package com.acm.service.auth.service;
 
 import com.acm.app.user.client.UserClient;
 import com.acm.app.user.client.domain.User;

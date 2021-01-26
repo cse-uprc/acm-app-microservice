@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.acm.app.user.client.domain.User;
-import com.acm.library.globals.enums.WebRole;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -16,8 +15,8 @@ import org.springframework.stereotype.Component;
  * @since 7/30/2020
  */
 @Component
-public class UserMapper implements RowMapper<User> {
-    public final static UserMapper USER_MAPPER = new UserMapper();
+public class DimUserMapper implements RowMapper<User> {
+    public final static DimUserMapper DIM_USER_MAPPER = new DimUserMapper();
 
     /**
      * Mapper for the user object returned from the database
@@ -30,14 +29,10 @@ public class UserMapper implements RowMapper<User> {
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         User user = new User();
-        user.setId(rs.getInt("user_id"));
+        user.setId(rs.getInt("dim_user_id"));
         user.setFirstName(rs.getString("first_name"));
         user.setLastName(rs.getString("last_name"));
         user.setEmail(rs.getString("email"));
-        user.setUsername(rs.getString("username"));
-        user.setPassword(rs.getString("password"));
-        user.setActive(rs.getInt("active"));
-        user.setWebRole(WebRole.valueOf(rs.getString("web_role_text_id")));
         return user;
     }
 }

@@ -33,7 +33,7 @@ public class JwtHolderTest {
 		user = new User();
 		user.setFirstName("TestFirst");
 		user.setLastName("TestLast");
-		user.setUserId(1);
+		user.setId(1);
 		user.setUsername("TestUser");
 		user.setPassword("password");
 

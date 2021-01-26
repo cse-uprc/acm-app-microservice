@@ -76,6 +76,15 @@ public class SqlClient {
 	}
 
 	/**
+	 * Execute the delete query
+	 * 
+	 * @param query - Query to be executed
+	 */
+	public void delete(String query) {
+		jdbcTemplateObject.execute(query);
+	}
+
+	/**
 	 * Common post method to be used when doing inserts into the database
 	 * 
 	 * @param query - The insert query to be run
